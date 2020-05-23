@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "mTJIKHP7q5Dqs3nrB45A/N42BAKUgq4rWVNETe2+uqiYoUZ8ARyVl7mydAJE/OS3ysvoccjYZPFXOVdWq+/WaA==",
+  "success": true,
+  "projectFilePath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.WPF\\PocoGen.WPF.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\terra\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\fabulous\\0.54.0\\fabulous.0.54.0.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\fabulous.liveupdate\\0.54.0\\fabulous.liveupdate.0.54.0.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\fabulous.xamarinforms\\0.54.0\\fabulous.xamarinforms.0.54.0.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\fabulous.xamarinforms.liveupdate\\0.54.0\\fabulous.xamarinforms.liveupdate.0.54.0.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\fsharp.core\\4.7.1\\fsharp.core.4.7.1.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\opentk\\3.0.1\\opentk.3.0.1.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\opentk.glcontrol\\3.0.1\\opentk.glcontrol.3.0.1.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\system.data.sqlclient\\4.8.1\\system.data.sqlclient.4.8.1.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\xamarin.essentials\\1.5.1\\xamarin.essentials.1.5.1.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\xamarin.forms\\4.6.0.726\\xamarin.forms.4.6.0.726.nupkg.sha512",
+    "C:\\Users\\terra\\.nuget\\packages\\xamarin.forms.platform.wpf\\4.6.0.726\\xamarin.forms.platform.wpf.4.6.0.726.nupkg.sha512"
+  ],
+  "logs": []
+}

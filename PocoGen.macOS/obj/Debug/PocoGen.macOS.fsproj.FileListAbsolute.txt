@@ -1,0 +1,3 @@
+C:\Source\Playground\fsharp\PocoGen\PocoGen\PocoGen.macOS\obj\Debug\actool\_PartialAppManifest.items
+C:\Source\Playground\fsharp\PocoGen\PocoGen\PocoGen.macOS\obj\Debug\actool\_BundleResourceWithLogicalName.items
+C:\Source\Playground\fsharp\PocoGen\PocoGen\PocoGen.macOS\obj\Debug\PocoGen.macOS.fsprojAssemblyReference.cache

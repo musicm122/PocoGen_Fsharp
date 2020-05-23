@@ -1,0 +1,43 @@
+2020-05-14T17:23:03.355Z - info:   [194044] *** FOLDER: c:\Source\Playground\fsharp\PocoGen\PocoGen ***
+2020-05-14T17:23:03.355Z - info:   [194044] AzureReposVSCode/1.161.0 (VSCode 1.45.0; Windows_NT 10.0.18363; Node 12.8.1)
+2020-05-14T17:23:03.355Z - debug:  [194044] Looking for an External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:03.355Z - debug:  [194044] No External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:03.364Z - debug:  [194044] Looking for TFVC repository at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:03.365Z - debug:  [194044] TFVC Creating Tfvc object with localPath='undefined'
+2020-05-14T17:23:03.365Z - debug:  [194044] Using TFS proxy: 
+2020-05-14T17:23:03.365Z - debug:  [194044] TFVC Retrieved from settings; localPath='"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe"'
+2020-05-14T17:23:03.365Z - warn:   [194044] TFVC "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe" does not exist.
+2020-05-14T17:23:03.366Z - error:  [194044] Unable to find the TF executable. Please ensure TF is installed and the path specified contains the filename.
+2020-05-14T17:23:25.424Z - info:   [204764] *** FOLDER: c:\Source\Playground\fsharp\PocoGen\PocoGen ***
+2020-05-14T17:23:25.424Z - info:   [204764] AzureReposVSCode/1.161.0 (VSCode 1.45.0; Windows_NT 10.0.18363; Node 12.8.1)
+2020-05-14T17:23:25.424Z - debug:  [204764] Looking for an External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:25.425Z - debug:  [204764] No External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:25.433Z - debug:  [204764] Looking for TFVC repository at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T17:23:25.433Z - debug:  [204764] TFVC Creating Tfvc object with localPath='undefined'
+2020-05-14T17:23:25.433Z - debug:  [204764] Using TFS proxy: 
+2020-05-14T17:23:25.433Z - debug:  [204764] TFVC Retrieved from settings; localPath='"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe"'
+2020-05-14T17:23:25.433Z - warn:   [204764] TFVC "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe" does not exist.
+2020-05-14T17:23:25.434Z - error:  [204764] Unable to find the TF executable. Please ensure TF is installed and the path specified contains the filename.
+2020-05-14T18:01:08.368Z - debug:  [204764] Reinitializing due to onDidChangeConfiguration
+2020-05-14T18:01:08.369Z - debug:  [204764] Polling interval value (minutes): 5
+2020-05-14T18:01:08.369Z - debug:  [204764] Polling interval must be greater than 10 minutes.
+2020-05-14T18:01:08.372Z - info:   [204764] *** FOLDER: c:\Source\Playground\fsharp\PocoGen\PocoGen ***
+2020-05-14T18:01:08.372Z - info:   [204764] AzureReposVSCode/1.161.0 (VSCode 1.45.0; Windows_NT 10.0.18363; Node 12.8.1)
+2020-05-14T18:01:08.373Z - debug:  [204764] Looking for an External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T18:01:08.373Z - debug:  [204764] No External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T18:01:08.384Z - debug:  [204764] Looking for TFVC repository at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-14T18:01:08.384Z - debug:  [204764] TFVC Creating Tfvc object with localPath='undefined'
+2020-05-14T18:01:08.385Z - debug:  [204764] Using TFS proxy: 
+2020-05-14T18:01:08.386Z - debug:  [204764] TFVC Retrieved from settings; localPath='"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe"'
+2020-05-14T18:01:08.386Z - warn:   [204764] TFVC "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe" does not exist.
+2020-05-14T18:01:08.386Z - error:  [204764] Unable to find the TF executable. Please ensure TF is installed and the path specified contains the filename.
+2020-05-15T13:53:14.082Z - info:   [285864] *** FOLDER: c:\Source\Playground\fsharp\PocoGen\PocoGen ***
+2020-05-15T13:53:14.083Z - info:   [285864] AzureReposVSCode/1.161.0 (VSCode 1.45.1; Windows_NT 10.0.18363; Node 12.8.1)
+2020-05-15T13:53:14.084Z - debug:  [285864] Looking for an External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-15T13:53:14.084Z - debug:  [285864] No External Context at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-15T13:53:14.093Z - debug:  [285864] Looking for TFVC repository at c:\Source\Playground\fsharp\PocoGen\PocoGen
+2020-05-15T13:53:14.094Z - debug:  [285864] TFVC Creating Tfvc object with localPath='undefined'
+2020-05-15T13:53:14.095Z - debug:  [285864] Using TFS proxy: 
+2020-05-15T13:53:14.095Z - debug:  [285864] TFVC Retrieved from settings; localPath='"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe"'
+2020-05-15T13:53:14.095Z - warn:   [285864] TFVC "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\TF.exe" does not exist.
+2020-05-15T13:53:14.096Z - error:  [285864] Unable to find the TF executable. Please ensure TF is installed and the path specified contains the filename.

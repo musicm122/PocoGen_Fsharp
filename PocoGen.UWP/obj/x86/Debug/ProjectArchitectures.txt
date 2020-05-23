@@ -1,0 +1,1 @@
+C:\Source\Playground\fsharp\PocoGen\PocoGen\PocoGen.UWP\PocoGen.UWP.csproj;x86

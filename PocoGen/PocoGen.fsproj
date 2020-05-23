@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Style.fs" />
+    <Compile Include="Common.fs" />
+    <Compile Include="Models.fs" />
+    <Compile Include="Store.fs" />
+    <Compile Include="Components.fs" />
+    <Compile Include="DataAccess.fs" />
+    <Compile Include="Pages\Connection.fs" />
+    <Compile Include="Pages\CodeGen.fs" />
+    <Compile Include="App.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
+    <PackageReference Include="Fabulous.XamarinForms" Version="0.54.0" />
+    <PackageReference Include="Fabulous.XamarinForms.LiveUpdate" Version="0.54.0" />
+    <PackageReference Include="FSharp.Core" Version="4.7.1" />
+    <PackageReference Update="FSharp.Core" Version="4.7.1" /> <!-- workaround for VSMac bug https://github.com/mono/monodevelop/pull/5137 --> 
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+</Project>
