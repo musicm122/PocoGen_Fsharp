@@ -11,48 +11,40 @@ type LogMessage =
 type ConnectionName = string
 type ConnectionStringValue = string
 
-type ConnectionString = {
-    Name:ConnectionName
-    Value:ConnectionStringValue
-}
+type ConnectionString =
+    { Name: ConnectionName
+      Value: ConnectionStringValue }
 
 [<NoComparison>]
 type ConnectionTestState =
-    |Pass
-    |Fail of Exception
-    |WIP
-    |NotStarted
+    | Pass
+    | Fail of Exception
+    | WIP
+    | NotStarted
 
 [<Struct>]
 [<NoComparison>]
-type ConnectionTestResult = {
-    State : ConnectionTestState;
-    Message : string
-}
+type ConnectionTestResult =
+    { State: ConnectionTestState
+      Message: string }
 
-type Database ={
-    Name:string;
-}
+type Database = { Name: string }
 
-type Table = {
-    name:string
-    database:Database
-}
+type Table = { Name: string; Database: Database }
 
-type Query= {
-    database:Database;
-    sql:string;
-    connectionString:ConnectionString
-}
+type Query =
+    { Database: Database
+      Sql: string
+      ConnectionString: ConnectionString }
 
 type Language =
-    |CSharp
-    |VbNet
+    | CSharp
+    | VbNet
 
 type GetSetValue =
-    |Get
-    |Set
-    |GetAndSet
+    | Get
+    | Set
+    | GetAndSet
 
 type AccessModifier =
     | Public
@@ -60,43 +52,33 @@ type AccessModifier =
     | Internal
     | Protected
 
-type ValueType ={
-    name:string;
-    value:Type;
-    isNullable:bool;
-}
+type ValueType =
+    { Name: string
+      Value: Type
+      IsNullable: bool }
 
-type Property = {
-    typeDetail:ValueType;
-    isNullable:bool;
-    columnName:string;
-    access:AccessModifier;
-    GetSet:GetSetValue
-}
+type Property =
+    { TypeDetail: ValueType
+      IsNullable: bool
+      ColumnName: string
+      Access: AccessModifier
+      GetSet: GetSetValue }
 
-type ClassObject = {
-    className:string;
-    access:AccessModifier;
-    properties:Property[]
-    language:Language
-}
+type ClassObject =
+    { ClassName: string
+      Access: AccessModifier
+      Properties: Property []
+      Language: Language }
 
-type ClassResult = {
-    raw:string;
-}
+type ClassResult = { Raw: string }
 
-type RawRowData = {
-    IsNullable:bool;
-    DataType:string;
-    ColumnName:string;
-}
+type RawRowData =
+    { IsNullable: bool
+      DataType: string
+      ColumnName: string }
 
-type FileOutputPath = {
-    fileName:string;
-    filePath:string;
-}
+type FileOutputPath = { FileName: string; FilePath: string }
 
 type StoreConnectionStringResult =
     | Success
     | Error of string
-

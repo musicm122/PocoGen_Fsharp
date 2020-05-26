@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Xamarin.Forms.4.6.0.726\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.726\build\Xamarin.Forms.props')" />
+  <Import Project="..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,7 @@
     <HttpClientHandler></HttpClientHandler>
     <LinkMode></LinkMode>
     <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,7 +54,76 @@
     <LinkMode>SdkOnly</LinkMode>
     <HttpClientHandler></HttpClientHandler>
     <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets" Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets')" />
+  <Import Project="..\.nuget\NuGet.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.4.6.0.800\lib\Xamarin.Mac\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.4.6.0.800\lib\Xamarin.Mac\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.4.6.0.800\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.7.2\lib\netstandard2.0\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous">
+      <HintPath>..\packages\Fabulous.0.54.1\lib\netstandard2.0\Fabulous.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous.LiveUpdate">
+      <HintPath>..\packages\Fabulous.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous.XamarinForms">
+      <HintPath>..\packages\Fabulous.XamarinForms.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous.XamarinForms.LiveUpdate">
+      <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.1.5.3.2\lib\netstandard2.0\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.3\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Sqlite">
+      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.3.1.4\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.2.0.3\lib\netstandard2.0\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.3\lib\netstandard2.0\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.2.0.35\lib\netstandard2.0\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Data.Dapper">
+      <HintPath>..\packages\FSharp.Data.Dapper.2.0.0\lib\netstandard2.0\FSharp.Data.Dapper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
@@ -67,58 +137,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="AppDelegate.fs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets" Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets')"/>
-  <Import Project="..\packages\Xamarin.Forms.4.6.0.726\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.726\build\Xamarin.Forms.targets')" />
-  <Import Project="..\.nuget\NuGet.targets" />
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Mac" />
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.4.6.0.726\lib\Xamarin.Mac\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\packages\Xamarin.Forms.4.6.0.726\lib\Xamarin.Mac\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.4.6.0.726\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.7.1\lib\netstandard2.0\FSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Fabulous">
-      <HintPath>..\packages\Fabulous.0.54.0\lib\netstandard2.0\Fabulous.dll</HintPath>
-    </Reference>
-    <Reference Include="Fabulous.LiveUpdate">
-      <HintPath>..\packages\Fabulous.LiveUpdate.0.54.0\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
-    </Reference>
-    <Reference Include="Fabulous.XamarinForms">
-      <HintPath>..\packages\Fabulous.XamarinForms.0.54.0\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Fabulous.XamarinForms.LiveUpdate">
-      <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.0\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PocoGen\PocoGen.fsproj">
       <Project>{350E4689-7D93-4ABA-A4B4-F285A823FF56}</Project>
       <Name>PocoGen</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets')" />
 </Project>
