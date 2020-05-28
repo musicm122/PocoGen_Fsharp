@@ -4,7 +4,6 @@ open System
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
-open Microsoft.Data.Sqlite
 open FSharp.Data.Dapper
 open Fabulous.XamarinForms.LiveUpdate
 

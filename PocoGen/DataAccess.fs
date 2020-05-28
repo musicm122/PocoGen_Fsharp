@@ -27,7 +27,7 @@ let testConnection (connectionString : ConnectionStringValue) : ConnectionTestRe
         { ConnectionTestResult.Message = "Unknown Failure"
           ConnectionTestResult.State = Fail(new Exception("Unknown Error")) }
 
-let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : ConnectionString) =
+let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : ConnectionStringItem) =
     async {
         use connection = new SqlConnection(conString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask
@@ -38,7 +38,7 @@ let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : Co
         return result |> Array.ofSeq
     }
 
-let getTableNamesFromMSSqlServerQuery (database : Database) (conString : ConnectionString) =
+let getTableNamesFromMSSqlServerQuery (database : Database) (conString : ConnectionStringItem) =
     use connection = new SqlConnection(conString.Value)
     do connection.Open()
     let sql = @"SELECT [t0].[TABLE_NAME]
@@ -47,7 +47,7 @@ let getTableNamesFromMSSqlServerQuery (database : Database) (conString : Connect
     let result = connection.Query<string>(sql, { Name = database.Name })
     result |> Array.ofSeq
 
-let getDatabaseNames (connString : ConnectionString) =
+let getDatabaseNames (connString : ConnectionStringItem) =
     use connection = new SqlConnection(connString.Value)
     do connection.Open()
     let sql = @"select name from sys.databases"
@@ -55,7 +55,7 @@ let getDatabaseNames (connString : ConnectionString) =
     connection.Close()
     result |> Array.ofSeq
 
-let getDatabaseNamesAsync (connString : ConnectionString) =
+let getDatabaseNamesAsync (connString : ConnectionStringItem) =
     async {
         use connection = new SqlConnection(connString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask

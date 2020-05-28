@@ -11,9 +11,16 @@ type LogMessage =
 type ConnectionName = string
 type ConnectionStringValue = string
 
-type ConnectionString =
-    { Name: ConnectionName
-      Value: ConnectionStringValue }
+[<CLIMutable>]
+type ConnectionStringItem = {
+    Id:int
+    Name:string
+    Value:string
+}
+
+//type ConnectionString =
+//    { Name: ConnectionName
+//      Value: ConnectionStringValue }
 
 [<NoComparison>]
 type ConnectionTestState =
@@ -35,7 +42,7 @@ type Table = { Name: string; Database: Database }
 type Query =
     { Database: Database
       Sql: string
-      ConnectionString: ConnectionString }
+      ConnectionString: ConnectionStringItem }
 
 type Language =
     | CSharp

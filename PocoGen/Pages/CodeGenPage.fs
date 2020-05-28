@@ -8,27 +8,24 @@ open Models
 open PocoGen
 open Common
 open Store
-open Store.Types
-open Store.Queries
 
 type Model =
     { OutputLocation : FileOutputPath
-      ConnectionStrings : ConnStr list
+      ConnectionStrings : ConnectionStringItem list
       Databases : Database list
       Languages : Language list
       Tables : Table list
-      SelectedConnectionString : ConnStr option
+      SelectedConnectionString : ConnectionStringItem option
       SelectedDatabase : Database option
       SelectedLanguage : Language
       SelectedTables : Table list }
 
-let fetchConnString() : ConnStr list =
-    async { let! constrs = Store.Queries.ConnectionString.GetAll()
-            return List.ofSeq (constrs) } |> Async.RunSynchronously
+let fetchConnString() : ConnectionStringItem list =
+    Store.getAllConnectionStrings()
 
 type Msg =
     | LoadConnectionStrings
-    | ConnectionStringsLoaded of Types.ConnStr list
+    | ConnectionStringsLoaded of ConnectionStringItem list
     | ConnectionStringsLoadFailed of string
     | SetSelectedDatabase of Database option
     | SetSelectedLanguage of Language
@@ -69,7 +66,7 @@ let update msg m =
 let view (model : Model) dispatch =
     let dbItems = model.Databases |> List.map (fun db -> db.Name)
     let languages = model.Languages |> List.map (fun l -> l.ToString())
-    let conStrs = fetchConnString() |> List.map (fun c -> View.TextCell(c.Id.ToString() + c.Name))
+    let conStrs = fetchConnString() |> List.map (fun c -> c.Id.ToString() + c.Name)
     let tables = [ "Table1"; "Table2"; "Table3"; "Table4" ] |> List.map (fun i -> View.TextCell i)
 
     let innerLayout children =
@@ -86,7 +83,7 @@ let view (model : Model) dispatch =
                         backgroundColor = Color.Red.WithLuminosity(0.9), horizontalOptions = LayoutOptions.Start,
                         padding = Thickness(1.0), margin = Thickness(20.0),
                         children = [ innerLayout
-                                         ([ View.Picker(items = dbItems, title = "Databases")
+                                         ([ View.Picker(items = conStrs, title = "Connection Strings")
                                             View.Picker(items = languages, title = "Languages")
                                             Components.formLabel "Inner2 Second row" ])
                                      innerLayout

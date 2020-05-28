@@ -13,22 +13,23 @@ type FormState =
     | MissingConnStrValue
 
 type Model =
-    { ConnectionString: ConnectionString
+    { ConnectionString: ConnectionStringItem
       CurrentFormState: FormState
       Output: string }
 
 let init () =
     { ConnectionString =
-          { ConnectionString.Value = String.Empty
-            ConnectionString.Name = String.Empty }
+          { ConnectionStringItem.Id = 0
+            ConnectionStringItem.Value = String.Empty
+            ConnectionStringItem.Name = String.Empty }
       CurrentFormState = MissingConnStrValue
       Output = String.Empty }
 
 type Msg =
     | UpdateConnectionStringValue of string
     | UpdateConnectionStringName of string
-    | TestConnection of ConnectionString
-    | SaveConnectionString of ConnectionString
+    | TestConnection of ConnectionStringItem
+    | SaveConnectionString of ConnectionStringItem
     | UpdateOutput of string
 
 let runConnectionTest (model: Model): Model =
@@ -47,31 +48,25 @@ let runConnectionTest (model: Model): Model =
 
     testResult
 
-let hasRequredSaveFields (conStr: ConnectionString): bool =
+let hasRequredSaveFields (conStr: ConnectionStringItem): bool =
     conStr.Name.IsNullOrWhiteSpace()
     && conStr.Value.IsNullOrWhiteSpace()
 
 let saveConnection (model: Model): Model =
-    let model =
-        async {
-            let! result = Store.Queries.ConnectionString.New model.ConnectionString.Name model.ConnectionString.Value
-            match result with
-            | Some i ->
-                return { model with
-                             Output = "Saved Successfully" }
-            | None ->
-                return { model with
-                             Output = "Missing Connection Details" }
-        }
-
-    model |> Async.RunSynchronously
+    let result = Store.addConnectionString model.ConnectionString
+    match result with
+    | Success ->
+        { model with Output = "Saved Successfully" }
+    | Error err->
+        { model with Output = err }
 
 let update (msg: Msg) (m: Model) =
     match msg with
     | UpdateConnectionStringValue conStringVal ->
         { m with
               ConnectionString =
-                  { Name = m.ConnectionString.Name
+                  { Id = m.ConnectionString.Id
+                    Name = m.ConnectionString.Name
                     Value = conStringVal }
               CurrentFormState =
                   match hasRequredSaveFields m.ConnectionString with
@@ -82,7 +77,8 @@ let update (msg: Msg) (m: Model) =
     | UpdateConnectionStringName conStringName ->
         { m with
               ConnectionString =
-                  { Name = conStringName
+                  { Id = m.ConnectionString.Id
+                    Name = conStringName
                     Value = m.ConnectionString.Value }
               CurrentFormState =
                   match hasRequredSaveFields m.ConnectionString with

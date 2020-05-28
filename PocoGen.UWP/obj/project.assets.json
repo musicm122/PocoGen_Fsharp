@@ -62,7 +62,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -151,31 +151,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -513,119 +488,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/alpine-x64/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "alpine-x64"
-          },
-          "runtimes/linux-arm/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-arm"
-          },
-          "runtimes/linux-arm64/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-arm64"
-          },
-          "runtimes/linux-armel/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-armel"
-          },
-          "runtimes/linux-musl-x64/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-musl-x64"
-          },
-          "runtimes/linux-x64/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/linux-x86/native/libe_sqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-x86"
-          },
-          "runtimes/osx-x64/native/libe_sqlite3.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-arm/native/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win-arm"
-          },
-          "runtimes/win-arm64/native/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win-arm64"
-          },
-          "runtimes/win-x64/native/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          },
-          "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win10-arm"
-          },
-          "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win10-arm64"
-          },
-          "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win10-x64"
-          },
-          "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win10-x86"
-          }
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -761,7 +623,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -887,7 +749,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -1037,7 +899,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -1112,7 +973,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -1201,31 +1062,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -1859,56 +1695,6 @@
           "runtimes/win/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2032,7 +1818,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -2155,7 +1941,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -2291,7 +2077,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -2366,7 +2151,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -2455,31 +2240,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -3144,56 +2904,6 @@
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3317,7 +3027,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -3440,7 +3150,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -3605,7 +3315,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -3680,7 +3389,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -3769,31 +3478,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -4458,56 +4142,6 @@
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4631,7 +4265,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -4754,7 +4388,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -4916,7 +4550,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -4991,7 +4624,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -5080,31 +4713,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -5738,56 +5346,6 @@
           "runtimes/win/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -5911,7 +5469,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -6034,7 +5592,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -6170,7 +5728,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -6245,7 +5802,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -6334,31 +5891,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -7023,56 +6555,6 @@
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -7196,7 +6678,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -7319,7 +6801,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -7484,7 +6966,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -7559,7 +7040,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -7648,31 +7129,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -8306,56 +7762,6 @@
           "runtimes/win/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -8479,7 +7885,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -8602,7 +8008,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -8738,7 +8144,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -8813,7 +8218,7 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.7.1": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -8902,31 +8307,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LiteDB.FSharp.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "3.1.4",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        }
-      },
-      "Microsoft.Data.Sqlite.Core/3.1.4": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -9591,56 +8971,6 @@
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
-        }
-      },
-      "SQLitePCLRaw.core/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
-        }
-      },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {}
-        },
-        "native": {
-          "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll": {}
-        }
-      },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "SQLitePCLRaw.core": "2.0.2"
-        },
-        "compile": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
-        }
-      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -9764,7 +9094,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -9887,7 +9217,7 @@
       "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -10052,7 +9382,6 @@
           "Fabulous.XamarinForms": "0.54.1",
           "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
           "LiteDB.FSharp": "2.15.1",
-          "Microsoft.Data.Sqlite": "3.1.4",
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SqlClient": "4.8.1",
           "Xamarin.Essentials": "1.5.3.2",
@@ -10139,15 +9468,15 @@
         "nuget-icon.png"
       ]
     },
-    "FSharp.Core/4.7.1": {
-      "sha512": "cQ4Dn5mFIWnJF8MmL49k2V6L8mtInDrXopskNFbpC4lsPdspTn7WzUQLylB4HU4tpi76ManXMVCAvtlYowTfHQ==",
+    "FSharp.Core/4.7.2": {
+      "sha512": "w3XFVTnyZUbC8e2QT6a85ern6y7eQPPk+MYemz1FP0iBfgZcembL+wmo5cIZ1kxB8jfoXC8Q9KVkOMsGpkBKbA==",
       "type": "package",
-      "path": "fsharp.core/4.7.1",
+      "path": "fsharp.core/4.7.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.4.7.1.nupkg.sha512",
+        "fsharp.core.4.7.2.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/net45/FSharp.Core.dll",
         "lib/net45/FSharp.Core.optdata",
@@ -10231,33 +9560,6 @@
         "lib/netstandard2.0/LiteDB.FSharp.xml",
         "litedb.fsharp.2.15.1.nupkg.sha512",
         "litedb.fsharp.nuspec"
-      ]
-    },
-    "Microsoft.Data.Sqlite/3.1.4": {
-      "sha512": "wXFufzZEGiRDM6jxi/ebyHKespms5Hk0zS5Q+8nrz/opHHIu5jIKoNe530484LPHdfYKZfXCOdzs+PsAfn6nRg==",
-      "type": "package",
-      "path": "microsoft.data.sqlite/3.1.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.3.1.4.nupkg.sha512",
-        "microsoft.data.sqlite.nuspec"
-      ]
-    },
-    "Microsoft.Data.Sqlite.Core/3.1.4": {
-      "sha512": "bicm19o4CBh1jH6MKRhpzlBsNvKL1sa19Q6vs4goIxKk0WVUXk/nljW6tdo5t6lVD54k6OJrfFqTJsaR6WqEug==",
-      "type": "package",
-      "path": "microsoft.data.sqlite.core/3.1.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
-        "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.3.1.4.nupkg.sha512",
-        "microsoft.data.sqlite.core.nuspec"
       ]
     },
     "Microsoft.Net.Native.Compiler/2.2.8-rel-28605-00": {
@@ -15226,79 +14528,6 @@
         "runtimes/win/lib/netstandard1.0/System.Private.Uri.dll"
       ]
     },
-    "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
-      "sha512": "OVPI/nh5AqfLCIKhAYqjCa6AHhc7oKApGcGM3UhMRSerFiBx58nSpGwxVFdMgjOCWZR+fA49nzsnKlWp5hFo8w==",
-      "type": "package",
-      "path": "sqlitepclraw.bundle_e_sqlite3/2.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
-        "lib/Xamarin.tvOS10/SQLitePCLRaw.batteries_v2.dll",
-        "lib/net461/SQLitePCLRaw.batteries_v2.dll",
-        "lib/net461/SQLitePCLRaw.nativelibrary.dll",
-        "lib/netcoreapp3.0/SQLitePCLRaw.batteries_v2.dll",
-        "lib/netcoreapp3.0/SQLitePCLRaw.nativelibrary.dll",
-        "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll",
-        "sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
-        "sqlitepclraw.bundle_e_sqlite3.nuspec"
-      ]
-    },
-    "SQLitePCLRaw.core/2.0.2": {
-      "sha512": "TFSBX426OelS1tkaVC254NVVlrJIe9YLhWPkEvuqJj2104QpmDmEYOhfdfDJD1E/2SmqDhoRw1ek5cQHj8olcQ==",
-      "type": "package",
-      "path": "sqlitepclraw.core/2.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/SQLitePCLRaw.core.dll",
-        "sqlitepclraw.core.2.0.2.nupkg.sha512",
-        "sqlitepclraw.core.nuspec"
-      ]
-    },
-    "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
-      "sha512": "S+Tsqe/M7wsc+9HeediI6UHtBKf2X586aRwhi1aBVLGe0WxkAo52O9ZxwEy/v8XMLefcrEMupd2e9CDlIT6QCw==",
-      "type": "package",
-      "path": "sqlitepclraw.lib.e_sqlite3/2.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/net461/SQLitePCLRaw.lib.e_sqlite3.targets",
-        "lib/net461/_._",
-        "lib/netstandard2.0/_._",
-        "runtimes/alpine-x64/native/libe_sqlite3.so",
-        "runtimes/linux-arm/native/libe_sqlite3.so",
-        "runtimes/linux-arm64/native/libe_sqlite3.so",
-        "runtimes/linux-armel/native/libe_sqlite3.so",
-        "runtimes/linux-musl-x64/native/libe_sqlite3.so",
-        "runtimes/linux-x64/native/libe_sqlite3.so",
-        "runtimes/linux-x86/native/libe_sqlite3.so",
-        "runtimes/osx-x64/native/libe_sqlite3.dylib",
-        "runtimes/win-arm/native/e_sqlite3.dll",
-        "runtimes/win-arm64/native/e_sqlite3.dll",
-        "runtimes/win-x64/native/e_sqlite3.dll",
-        "runtimes/win-x86/native/e_sqlite3.dll",
-        "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3.dll",
-        "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3.dll",
-        "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll",
-        "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll",
-        "sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",
-        "sqlitepclraw.lib.e_sqlite3.nuspec"
-      ]
-    },
-    "SQLitePCLRaw.provider.e_sqlite3/2.0.2": {
-      "sha512": "i85nt+PE5q+85jDDKos+32MyCyPIBjW09DHhTJm8Tr2lXjRza+zBB3/1ovBbHgZP8o/fXzqNwB8bZsRzEtzk4Q==",
-      "type": "package",
-      "path": "sqlitepclraw.provider.e_sqlite3/2.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "sqlitepclraw.provider.e_sqlite3.2.0.2.nupkg.sha512",
-        "sqlitepclraw.provider.e_sqlite3.nuspec"
-      ]
-    },
     "System.Collections/4.3.0": {
       "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
       "type": "package",
@@ -17170,7 +16399,7 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
-      "FSharp.Core >= 4.7.1",
+      "FSharp.Core >= 4.7.2",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.10",
       "PocoGen >= 1.0.0"
     ]
@@ -17222,7 +16451,7 @@
         "dependencies": {
           "FSharp.Core": {
             "target": "Package",
-            "version": "[4.7.1, )"
+            "version": "[4.7.2, )"
           },
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
@@ -17259,24 +16488,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: FSharp.Core from 4.7.2 to 4.7.1. Reference the package directly from the project to select a different version. \r\n PocoGen.UWP -> PocoGen -> FSharp.Core (>= 4.7.2) \r\n PocoGen.UWP -> FSharp.Core (>= 4.7.1)",
-      "libraryId": "FSharp.Core",
-      "targetGraphs": [
-        "UAP,Version=v10.0.16299",
-        "UAP,Version=v10.0.16299/win10-arm",
-        "UAP,Version=v10.0.16299/win10-arm-aot",
-        "UAP,Version=v10.0.16299/win10-arm64-aot",
-        "UAP,Version=v10.0.16299/win10-x64",
-        "UAP,Version=v10.0.16299/win10-x64-aot",
-        "UAP,Version=v10.0.16299/win10-x86",
-        "UAP,Version=v10.0.16299/win10-x86-aot"
-      ]
-    }
-  ]
+  }
 }
