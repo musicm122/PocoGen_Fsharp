@@ -1,17 +1,16 @@
 ﻿namespace PocoGen.GTK
 
+open Gtk
+
 module Main =
 
-    open PocoGen
-    open System
-    open Gtk
-    open Xamarin.Forms
-    open Xamarin.Forms.Platform.GTK
-
+    open System;
+    open Xamarin.Forms;
+    open Xamarin.Forms.Platform.GTK;
 
     [<EntryPoint>]
     let Main(args) =
-        Application.Init()
+        Gtk.Application.Init();
         Forms.Init()
         let app = PocoGen.App()
         let win = new FormsWindow()

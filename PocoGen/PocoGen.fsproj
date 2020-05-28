@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <Configurations>Debug;Release;Debug Windows;Debug Mac</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Style.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="CsharpFormatting.fs" />
     <Compile Include="Generator.fs" />
-    <Compile Include="Style.fs" />
     <Compile Include="Common.fs" />    
     <Compile Include="Store.fs" />
     <Compile Include="Components.fs" />

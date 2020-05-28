@@ -15,7 +15,14 @@ module Components =
     let formMultiLineEditor text textChanged =
         View.Editor(text = text, textChanged = (fun e -> e.NewTextValue |> textChanged), height = 100.)
 
-    let formButton text cmd isEnabled = View.Button(isEnabled = isEnabled, text = sprintf text, command = cmd)
+    let formButton text cmd isEnabled =
+        View.Button(
+            verticalOptions = LayoutOptions.FillAndExpand,
+            horizontalOptions= LayoutOptions.FillAndExpand,
+            isEnabled = isEnabled,
+            text = sprintf text,
+            command = cmd
+            )
 
     let List col =
         View.ListView

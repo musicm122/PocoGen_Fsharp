@@ -47,9 +47,7 @@ let initModel() =
       SelectedLanguage = Language.CSharp
       SelectedTables = [] }
 
-
 let init = initModel, Cmd.none
-
 
 let update msg m =
     match msg with
@@ -73,22 +71,26 @@ let view (model : Model) dispatch =
         View.StackLayout
             (orientation = StackOrientation.Vertical, verticalOptions = LayoutOptions.StartAndExpand,
              horizontalOptions = LayoutOptions.Start, margin = Thickness(1.0),
-             backgroundColor = Color.Blue.WithLuminosity(0.9), children = children)
+             children = children)
 
     View.ContentPage
-        (padding = Thickness(5.0), title = "Code Gen", backgroundColor = Color.Green.WithLuminosity(0.9),
-
+        (padding = Thickness(5.0),
+         title = "Code Gen",
          content = View.StackLayout
                        (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.StartAndExpand,
-                        backgroundColor = Color.Red.WithLuminosity(0.9), horizontalOptions = LayoutOptions.Start,
+                        horizontalOptions = LayoutOptions.Start,
                         padding = Thickness(1.0), margin = Thickness(20.0),
                         children = [ innerLayout
-                                         ([ View.Picker(items = conStrs, title = "Connection Strings")
-                                            View.Picker(items = languages, title = "Languages")
-                                            Components.formLabel "Inner2 Second row" ])
+                                         ([ Components.formLabel "Connection Strings"
+                                            View.Picker(items = conStrs, title = "Connection Strings")
+                                            Components.formLabel "Databases"
+                                            View.Picker(items = dbItems, title = "Databases")
+                                            Components.formLabel "Languages"
+                                            View.Picker(items = languages, title = "Languages")])
                                      innerLayout
                                          ([ Components.formLabel "Code Gen"
-                                            View.ListView(items = tables) ]) ]))
+                                            View.ListView(items = tables) ])
+                                    ]))
 
 //let hasADatabaseSelected(m:Model) =
 //    match m.SelectedDatabase.IsSome with

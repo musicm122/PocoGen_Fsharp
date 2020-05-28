@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net472</TargetFramework>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <Configurations>Debug;Release;Debug Windows;Debug Mac</Configurations>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.fs" />

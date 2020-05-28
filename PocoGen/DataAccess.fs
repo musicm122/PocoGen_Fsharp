@@ -20,12 +20,9 @@ let testConnection (connectionString : ConnectionStringValue) : ConnectionTestRe
             { ConnectionTestResult.Message = "Success"
               ConnectionTestResult.State = Pass }
     with
-    | :? SqlException as ex ->
-        { ConnectionTestResult.Message = "SQL Error " + ex.Message
+    | :? Exception as ex ->
+        { ConnectionTestResult.Message = "Error :" + ex.Message
           ConnectionTestResult.State = Fail ex }
-    | _ ->
-        { ConnectionTestResult.Message = "Unknown Failure"
-          ConnectionTestResult.State = Fail(new Exception("Unknown Error")) }
 
 let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : ConnectionStringItem) =
     async {

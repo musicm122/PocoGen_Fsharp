@@ -33,16 +33,20 @@
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
     <Profiling>true</Profiling>
-    <HttpClientHandler></HttpClientHandler>
-    <LinkMode></LinkMode>
-    <XamMacArch></XamMacArch>
+    <HttpClientHandler>
+    </HttpClientHandler>
+    <LinkMode>
+    </LinkMode>
+    <XamMacArch>
+    </XamMacArch>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnableCodeSigning>false</EnableCodeSigning>
@@ -52,15 +56,75 @@
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
     <LinkMode>SdkOnly</LinkMode>
-    <HttpClientHandler></HttpClientHandler>
-    <XamMacArch></XamMacArch>
+    <HttpClientHandler>
+    </HttpClientHandler>
+    <XamMacArch>
+    </XamMacArch>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Windows|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <Profiling>true</Profiling>
+    <HttpClientHandler />
+    <LinkMode />
+    <XamMacArch />
+    <AOTMode>None</AOTMode>
+    <OutputPath>bin\Debug Windows\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Mac|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <Profiling>true</Profiling>
+    <HttpClientHandler />
+    <LinkMode />
+    <XamMacArch />
+    <AOTMode>None</AOTMode>
+    <OutputPath>bin\Debug Mac\</OutputPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets" Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.FSharp.targets')" />
   <Import Project="..\.nuget\NuGet.targets" />
+  <Import Project="..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets')" />
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <Compile Include="AppDelegate.fs" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Numerics" />
@@ -105,46 +169,15 @@
     <Reference Include="System.Memory">
       <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\packages\SQLitePCLRaw.core.2.0.3\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Data.Sqlite">
-      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.3.1.4\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
-      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.2.0.3\lib\netstandard2.0\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.3\lib\netstandard2.0\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.2.0.35\lib\netstandard2.0\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Data.Dapper">
       <HintPath>..\packages\FSharp.Data.Dapper.2.0.0\lib\netstandard2.0\FSharp.Data.Dapper.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <None Include="Info.plist" />
-    <None Include="Entitlements.plist" />
-    <None Include="packages.config" />
-    <Compile Include="AppDelegate.fs" />
     <ProjectReference Include="..\PocoGen\PocoGen.fsproj">
       <Project>{350E4689-7D93-4ABA-A4B4-F285A823FF56}</Project>
       <Name>PocoGen</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.6.0.800\build\Xamarin.Forms.targets')" />
 </Project>

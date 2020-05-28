@@ -53,12 +53,20 @@ let hasRequredSaveFields (conStr: ConnectionStringItem): bool =
     && conStr.Value.IsNullOrWhiteSpace()
 
 let saveConnection (model: Model): Model =
-    let result = Store.addConnectionString model.ConnectionString
-    match result with
-    | Success ->
-        { model with Output = "Saved Successfully" }
-    | Error err->
-        { model with Output = err }
+    let connectionTestResult =
+        DataAccess.testConnection model.ConnectionString.Value
+    match connectionTestResult.State with
+    | Pass ->
+        let result = Store.addConnectionString model.ConnectionString
+        match result with
+        | Success ->
+            { model with Output = "Saved Successfully" }
+        | Error err->
+            { model with Output = err }
+    | Fail ex ->
+        { model with
+              Output = "Attempt to save failed with " + connectionTestResult.Message }
+    | _ -> { model with Output = String.Empty }
 
 let update (msg: Msg) (m: Model) =
     match msg with
@@ -114,6 +122,13 @@ let view (model: Model) dispatch =
          | Valid -> Components.formButton "Save" saveConnectionString true
          | _ -> Components.formButton "Save" saveConnectionString false)
 
+    let buttonStack =
+        View.StackLayout
+            (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.Center,
+                horizontalOptions = LayoutOptions.Fill,
+                children=[ testButton; saveButton])
+
+
     View.ContentPage
         (padding = Thickness(5.0),
          title = "Connection Test",
@@ -123,8 +138,7 @@ let view (model: Model) dispatch =
                     Components.formEntry model.ConnectionString.Name updateConnectionStringName
                     Components.formLabel "Connection String Value"
                     Components.formMultiLineEditor model.ConnectionString.Value updateConnectionStringValue
-                    testButton
-                    saveButton
+                    buttonStack
                     Components.formLabel "Output"
                     Components.formLabel (sprintf "%s" model.Output) ]))
 

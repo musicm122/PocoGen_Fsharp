@@ -26,7 +26,6 @@ type ConnectionStringItem = {
 type ConnectionTestState =
     | Pass
     | Fail of Exception
-    | WIP
     | NotStarted
 
 [<Struct>]
