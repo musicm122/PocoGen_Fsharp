@@ -1,35 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj": {}
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj": {}
   },
   "projects": {
-    "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj": {
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj",
+        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj",
         "projectName": "PocoGen.WPF",
-        "projectPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj",
-        "packagesPath": "/Users/terrancesmith/.nuget/packages/",
-        "outputPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/obj/",
+        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj",
+        "packagesPath": "C:\\Users\\terra\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "/Users/terrancesmith/.config/NuGet/NuGet.Config"
+          "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\.nuget\\NuGet.Config",
+          "C:\\Users\\terra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj": {
-                "projectPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj"
+              "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj": {
+                "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj"
               }
             }
           }
@@ -40,40 +44,52 @@
           "dependencies": {
             "FSharp.Core": {
               "target": "Package",
-              "version": "[4.5.2, )"
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.4, )",
+              "generatePathProperty": true
             },
             "Xamarin.Forms.Platform.WPF": {
               "target": "Package",
-              "version": "[4.6.0.800, )"
+              "version": "[4.6.0.800, )",
+              "generatePathProperty": true
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
         }
       }
     },
-    "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj": {
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj",
+        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj",
         "projectName": "PocoGen",
-        "projectPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj",
-        "packagesPath": "/Users/terrancesmith/.nuget/packages/",
-        "outputPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/obj/",
+        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj",
+        "packagesPath": "C:\\Users\\terra\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "/Users/terrancesmith/.config/NuGet/NuGet.Config"
+          "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\.nuget\\NuGet.Config",
+          "C:\\Users\\terra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,53 +103,65 @@
           "dependencies": {
             "Dapper": {
               "target": "Package",
-              "version": "[2.0.35, )"
+              "version": "[2.0.35, )",
+              "generatePathProperty": true
             },
             "FSharp.Core": {
               "target": "Package",
-              "version": "[4.7.2, )"
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
             },
             "FSharp.Data.Dapper": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[2.0.0, )",
+              "generatePathProperty": true
             },
             "Fabulous.XamarinForms": {
               "target": "Package",
-              "version": "[0.54.1, )"
+              "version": "[0.54.1, )",
+              "generatePathProperty": true
             },
             "Fabulous.XamarinForms.LiveUpdate": {
               "target": "Package",
-              "version": "[0.54.1, )"
+              "version": "[0.54.1, )",
+              "generatePathProperty": true
             },
             "LiteDB.FSharp": {
               "target": "Package",
-              "version": "[2.15.1, )"
+              "version": "[2.15.1, )",
+              "generatePathProperty": true
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.4, )",
+              "generatePathProperty": true
             },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
-              "autoReferenced": true
+              "autoReferenced": true,
+              "generatePathProperty": true
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "[12.0.3, )",
+              "generatePathProperty": true
             },
             "System.Data.SqlClient": {
               "target": "Package",
-              "version": "[4.8.1, )"
+              "version": "[4.8.1, )",
+              "generatePathProperty": true
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.3.2, )"
+              "version": "[1.5.3.2, )",
+              "generatePathProperty": true
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.6.0.800, )"
+              "version": "[4.6.0.800, )",
+              "generatePathProperty": true
             }
           },
           "imports": [
@@ -146,7 +174,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

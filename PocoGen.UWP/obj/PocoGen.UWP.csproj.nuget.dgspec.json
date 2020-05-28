@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.UWP\\PocoGen.UWP.csproj": {}
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.UWP\\PocoGen.UWP.csproj": {}
   },
   "projects": {
-    "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.UWP\\PocoGen.UWP.csproj": {
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.UWP\\PocoGen.UWP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.UWP\\PocoGen.UWP.csproj",
+        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.UWP\\PocoGen.UWP.csproj",
         "projectName": "PocoGen.UWP",
-        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.UWP\\PocoGen.UWP.csproj",
+        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.UWP\\PocoGen.UWP.csproj",
         "packagesPath": "C:\\Users\\terra\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen.UWP\\obj\\",
+        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.UWP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\.nuget\\NuGet.Config",
+          "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\.nuget\\NuGet.Config",
           "C:\\Users\\terra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -34,8 +34,8 @@
         "frameworks": {
           "uap10.0.16299": {
             "projectReferences": {
-              "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\PocoGen.fsproj": {
-                "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\PocoGen.fsproj"
+              "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj": {
+                "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj"
               }
             }
           }
@@ -84,20 +84,20 @@
         }
       }
     },
-    "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\PocoGen.fsproj": {
+    "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\PocoGen.fsproj",
+        "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj",
         "projectName": "PocoGen",
-        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\PocoGen.fsproj",
+        "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj",
         "packagesPath": "C:\\Users\\terra\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\PocoGen\\obj\\",
+        "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Source\\Playground\\fsharp\\PocoGen\\PocoGen\\.nuget\\NuGet.Config",
+          "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\.nuget\\NuGet.Config",
           "C:\\Users\\terra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -125,17 +125,32 @@
             },
             "FSharp.Core": {
               "target": "Package",
-              "version": "[4.7.1, )",
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
+            },
+            "FSharp.Data.Dapper": {
+              "target": "Package",
+              "version": "[2.0.0, )",
               "generatePathProperty": true
             },
             "Fabulous.XamarinForms": {
               "target": "Package",
-              "version": "[0.54.0, )",
+              "version": "[0.54.1, )",
               "generatePathProperty": true
             },
             "Fabulous.XamarinForms.LiveUpdate": {
               "target": "Package",
-              "version": "[0.54.0, )",
+              "version": "[0.54.1, )",
+              "generatePathProperty": true
+            },
+            "LiteDB.FSharp": {
+              "target": "Package",
+              "version": "[2.15.1, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.4, )",
               "generatePathProperty": true
             },
             "NETStandard.Library": {
@@ -157,12 +172,12 @@
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.1, )",
+              "version": "[1.5.3.2, )",
               "generatePathProperty": true
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.6.0.726, )",
+              "version": "[4.6.0.800, )",
               "generatePathProperty": true
             }
           },

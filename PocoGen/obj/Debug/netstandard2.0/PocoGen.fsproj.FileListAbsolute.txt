@@ -14,3 +14,11 @@ C:/Source/Playground/fsharp/PocoGen/PocoGen/PocoGen/obj/Debug/netstandard2.0/Poc
 /Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/obj/Debug/netstandard2.0/PocoGen.fsprojAssemblyReference.cache
 /Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/bin/Debug/netstandard2.0/PocoGen.dll
 /Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/obj/Debug/netstandard2.0/XamlC.stamp
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\bin\Debug\netstandard2.0\PocoGen.deps.json
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\bin\Debug\netstandard2.0\PocoGen.dll
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\bin\Debug\netstandard2.0\PocoGen.pdb
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\obj\Debug\netstandard2.0\PocoGen.AssemblyInfoInputs.cache
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\obj\Debug\netstandard2.0\PocoGen.AssemblyInfo.fs
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\obj\Debug\netstandard2.0\PocoGen.dll
+C:\Source\Playground\fsharp\PocoGen_Fsharp\PocoGen\obj\Debug\netstandard2.0\PocoGen.pdb

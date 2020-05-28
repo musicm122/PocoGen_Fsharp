@@ -59,15 +59,13 @@
           "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
         }
       },
-      "FSharp.Core/4.5.2": {
+      "FSharp.Core/4.7.2": {
         "type": "package",
         "compile": {
-          "lib/net45/FSharp.Core.dll": {},
-          "lib/net45/FSharp.Core.resources.dll": {}
+          "lib/net45/FSharp.Core.dll": {}
         },
         "runtime": {
-          "lib/net45/FSharp.Core.dll": {},
-          "lib/net45/FSharp.Core.resources.dll": {}
+          "lib/net45/FSharp.Core.dll": {}
         },
         "resource": {
           "lib/net45/cs/FSharp.Core.resources.dll": {
@@ -75,9 +73,6 @@
           },
           "lib/net45/de/FSharp.Core.resources.dll": {
             "locale": "de"
-          },
-          "lib/net45/en/FSharp.Core.resources.dll": {
-            "locale": "en"
           },
           "lib/net45/es/FSharp.Core.resources.dll": {
             "locale": "es"
@@ -460,6 +455,404 @@
           "bin/placeholder/PocoGen.dll": {}
         }
       }
+    },
+    ".NETFramework,Version=v4.7.2/win7-x86": {
+      "Dapper/2.0.35": {
+        "type": "package",
+        "compile": {
+          "lib/net461/Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/net461/Dapper.dll": {}
+        }
+      },
+      "Fabulous/0.54.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Fabulous.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fabulous.dll": {}
+        }
+      },
+      "Fabulous.LiveUpdate/0.54.1": {
+        "type": "package",
+        "dependencies": {
+          "Fabulous": "0.54.1",
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Fabulous.LiveUpdate.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fabulous.LiveUpdate.dll": {}
+        }
+      },
+      "Fabulous.XamarinForms/0.54.1": {
+        "type": "package",
+        "dependencies": {
+          "Fabulous": "0.54.1",
+          "Xamarin.Forms": "4.6.0.726"
+        },
+        "compile": {
+          "lib/netstandard2.0/Fabulous.XamarinForms.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fabulous.XamarinForms.dll": {}
+        }
+      },
+      "Fabulous.XamarinForms.LiveUpdate/0.54.1": {
+        "type": "package",
+        "dependencies": {
+          "Fabulous.LiveUpdate": "0.54.1",
+          "Xamarin.Forms": "4.6.0.726"
+        },
+        "compile": {
+          "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fabulous.XamarinForms.LiveUpdate.dll": {}
+        }
+      },
+      "FSharp.Core/4.7.2": {
+        "type": "package",
+        "compile": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/net45/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net45/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net45/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net45/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net45/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net45/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net45/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net45/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net45/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net45/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net45/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net45/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net45/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "FSharp.Data.Dapper/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Dapper": "1.50.4",
+          "FSharp.Core": "4.2.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/FSharp.Data.Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Data.Dapper.dll": {}
+        }
+      },
+      "LiteDB/4.1.4": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System"
+        ],
+        "compile": {
+          "lib/net40/LiteDB.dll": {}
+        },
+        "runtime": {
+          "lib/net40/LiteDB.dll": {}
+        }
+      },
+      "LiteDB.FSharp/2.15.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.7.0",
+          "LiteDB": "[4.1.4, 5.0.0)",
+          "Newtonsoft.Json": "12.0.2",
+          "TypeShape": "7.1.0"
+        },
+        "compile": {
+          "lib/net461/LiteDB.FSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net461/LiteDB.FSharp.dll": {}
+        }
+      },
+      "Microsoft.Data.Sqlite/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "3.1.4",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.Data.Sqlite.Core/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "OpenTK/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net20/OpenTK.dll": {}
+        },
+        "runtime": {
+          "lib/net20/OpenTK.dll": {}
+        }
+      },
+      "OpenTK.GLControl/3.0.1": {
+        "type": "package",
+        "dependencies": {
+          "OpenTK": "3.0.1"
+        },
+        "compile": {
+          "lib/net20/OpenTK.GLControl.dll": {}
+        },
+        "runtime": {
+          "lib/net20/OpenTK.GLControl.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2",
+          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
+          "SQLitePCLRaw.provider.dynamic_cdecl": "2.0.2"
+        },
+        "compile": {
+          "lib/net461/SQLitePCLRaw.batteries_v2.dll": {},
+          "lib/net461/SQLitePCLRaw.nativelibrary.dll": {}
+        },
+        "runtime": {
+          "lib/net461/SQLitePCLRaw.batteries_v2.dll": {},
+          "lib/net461/SQLitePCLRaw.nativelibrary.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net461/_._": {}
+        },
+        "runtime": {
+          "lib/net461/_._": {}
+        },
+        "native": {
+          "runtimes/win-x86/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/net461/SQLitePCLRaw.lib.e_sqlite3.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.dynamic_cdecl/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll": {}
+        }
+      },
+      "System.Buffers/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Buffers.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Buffers.dll": {}
+        }
+      },
+      "System.Data.SqlClient/4.8.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Data",
+          "System.Xml",
+          "mscorlib"
+        ],
+        "compile": {
+          "ref/net461/System.Data.SqlClient.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/net461/System.Data.SqlClient.dll": {}
+        }
+      },
+      "System.Memory/4.5.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Memory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Memory.dll": {}
+        }
+      },
+      "System.Numerics.Vectors/4.5.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Numerics",
+          "mscorlib"
+        ],
+        "compile": {
+          "ref/net46/System.Numerics.Vectors.dll": {}
+        },
+        "runtime": {
+          "lib/net46/System.Numerics.Vectors.dll": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
+      },
+      "TypeShape/7.1.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "3.1.2"
+        },
+        "compile": {
+          "lib/net45/TypeShape.CSharp.dll": {},
+          "lib/net45/TypeShape.dll": {}
+        },
+        "runtime": {
+          "lib/net45/TypeShape.CSharp.dll": {},
+          "lib/net45/TypeShape.dll": {}
+        }
+      },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Numerics.Vectors": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Essentials.dll": {}
+        }
+      },
+      "Xamarin.Forms/4.6.0.800": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
+          "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {},
+          "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
+          "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {},
+          "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Forms.props": {},
+          "buildTransitive/Xamarin.Forms.targets": {}
+        }
+      },
+      "Xamarin.Forms.Platform.WPF/4.6.0.800": {
+        "type": "package",
+        "dependencies": {
+          "OpenTK": "3.0.1",
+          "OpenTK.GLControl": "3.0.1",
+          "Xamarin.Forms": "4.6.0.800"
+        },
+        "compile": {
+          "lib/net45/Xamarin.Forms.Platform.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Xamarin.Forms.Platform.WPF.dll": {}
+        }
+      },
+      "PocoGen/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Dapper": "2.0.35",
+          "FSharp.Core": "4.7.2",
+          "FSharp.Data.Dapper": "2.0.0",
+          "Fabulous.XamarinForms": "0.54.1",
+          "Fabulous.XamarinForms.LiveUpdate": "0.54.1",
+          "LiteDB.FSharp": "2.15.1",
+          "Microsoft.Data.Sqlite": "3.1.4",
+          "Newtonsoft.Json": "12.0.3",
+          "System.Data.SqlClient": "4.8.1",
+          "Xamarin.Essentials": "1.5.3.2",
+          "Xamarin.Forms": "4.6.0.800"
+        },
+        "compile": {
+          "bin/placeholder/PocoGen.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PocoGen.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -534,23 +927,22 @@
         "nuget-icon.png"
       ]
     },
-    "FSharp.Core/4.5.2": {
-      "sha512": "apbdQOjzsjQ637kTWQuW29jqwY18jsHMyNC5A+TPJZKFEIE2cIfQWf3V7+mXrxlbX69BueYkv293/g70wuXuRw==",
+    "FSharp.Core/4.7.2": {
+      "sha512": "w3XFVTnyZUbC8e2QT6a85ern6y7eQPPk+MYemz1FP0iBfgZcembL+wmo5cIZ1kxB8jfoXC8Q9KVkOMsGpkBKbA==",
       "type": "package",
-      "path": "fsharp.core/4.5.2",
+      "path": "fsharp.core/4.7.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "fsharp.core.4.5.2.nupkg.sha512",
+        "Icon.png",
+        "fsharp.core.4.7.2.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/net45/FSharp.Core.dll",
         "lib/net45/FSharp.Core.optdata",
-        "lib/net45/FSharp.Core.resources.dll",
         "lib/net45/FSharp.Core.sigdata",
         "lib/net45/FSharp.Core.xml",
         "lib/net45/cs/FSharp.Core.resources.dll",
         "lib/net45/de/FSharp.Core.resources.dll",
-        "lib/net45/en/FSharp.Core.resources.dll",
         "lib/net45/es/FSharp.Core.resources.dll",
         "lib/net45/fr/FSharp.Core.resources.dll",
         "lib/net45/it/FSharp.Core.resources.dll",
@@ -562,24 +954,23 @@
         "lib/net45/tr/FSharp.Core.resources.dll",
         "lib/net45/zh-Hans/FSharp.Core.resources.dll",
         "lib/net45/zh-Hant/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/FSharp.Core.dll",
-        "lib/netstandard1.6/FSharp.Core.optdata",
-        "lib/netstandard1.6/FSharp.Core.sigdata",
-        "lib/netstandard1.6/FSharp.Core.xml",
-        "lib/netstandard1.6/cs/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/de/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/en/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/es/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/fr/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/it/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/ja/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/ko/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/pl/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll"
+        "lib/netstandard2.0/FSharp.Core.dll",
+        "lib/netstandard2.0/FSharp.Core.optdata",
+        "lib/netstandard2.0/FSharp.Core.sigdata",
+        "lib/netstandard2.0/FSharp.Core.xml",
+        "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll"
       ]
     },
     "FSharp.Data.Dapper/2.0.0": {
@@ -1400,42 +1791,46 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "FSharp.Core >= 4.5.2",
+      "FSharp.Core >= 4.7.2",
       "Microsoft.Data.Sqlite >= 3.1.4",
       "PocoGen >= 1.0.0",
       "Xamarin.Forms.Platform.WPF >= 4.6.0.800"
     ]
   },
   "packageFolders": {
-    "/Users/terrancesmith/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\terra\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj",
+      "projectUniqueName": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj",
       "projectName": "PocoGen.WPF",
-      "projectPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/PocoGen.WPF.fsproj",
-      "packagesPath": "/Users/terrancesmith/.nuget/packages/",
-      "outputPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen.WPF/obj/",
+      "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\PocoGen.WPF.fsproj",
+      "packagesPath": "C:\\Users\\terra\\.nuget\\packages\\",
+      "outputPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen.WPF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "/Users/terrancesmith/.config/NuGet/NuGet.Config"
+        "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\.nuget\\NuGet.Config",
+        "C:\\Users\\terra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net472": {
           "projectReferences": {
-            "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj": {
-              "projectPath": "/Users/terrancesmith/Projects/ClientWork/HackerFerretSoftware/PocoGen_Fsharp/PocoGen/PocoGen.fsproj"
+            "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj": {
+              "projectPath": "C:\\Source\\Playground\\fsharp\\PocoGen_Fsharp\\PocoGen\\PocoGen.fsproj"
             }
           }
         }
@@ -1446,31 +1841,27 @@
         "dependencies": {
           "FSharp.Core": {
             "target": "Package",
-            "version": "[4.5.2, )"
+            "version": "[4.7.2, )",
+            "generatePathProperty": true
           },
           "Microsoft.Data.Sqlite": {
             "target": "Package",
-            "version": "[3.1.4, )"
+            "version": "[3.1.4, )",
+            "generatePathProperty": true
           },
           "Xamarin.Forms.Platform.WPF": {
             "target": "Package",
-            "version": "[4.6.0.800, )"
+            "version": "[4.6.0.800, )",
+            "generatePathProperty": true
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win7-x86": {
+        "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package downgrade: FSharp.Core from 4.7.2 to 4.5.2. Reference the package directly from the project to select a different version. \n PocoGen.WPF -> PocoGen -> FSharp.Core (>= 4.7.2) \n PocoGen.WPF -> FSharp.Core (>= 4.5.2)",
-      "libraryId": "FSharp.Core",
-      "targetGraphs": [
-        ".NETFramework,Version=v4.7.2"
-      ]
-    }
-  ]
+  }
 }
