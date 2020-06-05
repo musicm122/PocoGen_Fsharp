@@ -23,13 +23,12 @@ let addConnectionString (connString : ConnectionStringItem) : StoreConnectionStr
             |> ignore
         StoreConnectionStringResult.Success
     with
-        :? Exception as ex -> StoreConnectionStringResult.Error ex.Message
+        :? Exception as ex -> Error ex.Message
 
 let getConnectionStringById (id:int) : ConnectionStringItem =
     let mapper = FSharpBsonMapper()
     use db = new LiteDatabase(dbFileName, mapper)
     db.GetCollection<ConnectionStringItem>(collectionName).FindOne(fun c->c.Id = id)
-
 
 let getAllConnectionStrings () : ConnectionStringItem list =
     let mapper = FSharpBsonMapper()

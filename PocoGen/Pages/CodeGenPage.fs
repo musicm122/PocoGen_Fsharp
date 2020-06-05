@@ -9,28 +9,40 @@ open PocoGen
 open Common
 open Store
 
+type PageState  =
+    | MissingRequiredFields of string
+    | ValidForm
+    | Init
+
 type Model =
     { OutputLocation : FileOutputPath
       ConnectionStrings : ConnectionStringItem list
-      Databases : Database list
+      Databases : DbItem list
       Languages : Language list
       Tables : Table list
       SelectedConnectionString : ConnectionStringItem option
-      SelectedDatabase : Database option
+      SelectedDatabase : DbItem option
       SelectedLanguage : Language
-      SelectedTables : Table list }
+      SelectedTables : Table list
+      CodeGenPageState: PageState}
 
 let fetchConnString() : ConnectionStringItem list =
     Store.getAllConnectionStrings()
+
+let fetchDatabases(conn:ConnectionStringItem) : DbItem list =
+    DataAccess.getDatabaseNames conn
+
+let fetchTables (dbName: DbItem) (conn: ConnectionStringItem) : Table list =
+    DataAccess.getTableNamesFromMSSqlServerQuery dbName conn
 
 type Msg =
     | LoadConnectionStrings
     | ConnectionStringsLoaded of ConnectionStringItem list
     | ConnectionStringsLoadFailed of string
-    | SetSelectedDatabase of Database option
+    | SetSelectedDatabase of DbItem option
     | SetSelectedLanguage of Language
     | BrowseForOutputFolder of FileOutputPath
-    | PopulateAvailableDatabases of Database list
+    | PopulateAvailableDatabases of DbItem list
     | PopulateAvailableTables of Table list
     | GenerateCode
 
@@ -45,7 +57,9 @@ let initModel() =
       SelectedConnectionString = None
       SelectedDatabase = None
       SelectedLanguage = Language.CSharp
-      SelectedTables = [] }
+      SelectedTables = []
+      CodeGenPageState = PageState.Init}
+
 
 let init = initModel, Cmd.none
 
@@ -61,11 +75,30 @@ let update msg m =
     | ConnectionStringsLoaded cs -> { m with ConnectionStrings = cs }, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
 
+
+let hasADatabaseSelected(m:Model): PageState =
+    match m.SelectedDatabase.IsSome with
+    | false -> MissingRequiredFields "Selected database is required"
+    | _ -> ValidForm
+
+let hasAtLeastOneTableSelected(m:Model) =
+    match m.SelectedTables |> List.isEmpty with
+    | true -> ValidForm
+    | _ -> MissingRequiredFields "At least one table is required"
+
+let hasValidOutputFolder(m:Model) =
+    match IsValidPath m.OutputLocation with
+    | true -> ValidForm
+    | _ -> MissingRequiredFields  "Invalid output path"
+
+let hasRequiredFields =
+    hasADatabaseSelected
+
 let view (model : Model) dispatch =
     let dbItems = model.Databases |> List.map (fun db -> db.Name)
     let languages = model.Languages |> List.map (fun l -> l.ToString())
-    let conStrs = fetchConnString() |> List.map (fun c -> c.Id.ToString() + c.Name)
-    let tables = [ "Table1"; "Table2"; "Table3"; "Table4" ] |> List.map (fun i -> View.TextCell i)
+    let conStrs = model.ConnectionStrings |> List.map (fun c -> c.Id.ToString() + c.Name)
+    let tables = model.Tables |> List.map(fun i -> View.TextCell i.Name)
 
     let innerLayout children =
         View.StackLayout
@@ -92,25 +125,6 @@ let view (model : Model) dispatch =
                                             View.ListView(items = tables) ])
                                     ]))
 
-//let hasADatabaseSelected(m:Model) =
-//    match m.SelectedDatabase.IsSome with
-//    | false -> m. Error "Selected database is required"
-//    | _ -> Ok m
-
-//let hasAtLeastOneTableSelected(m:Model) =
-//    match m.SelectedTables |> List.isEmpty with
-//    | true -> Ok m
-//    | _ -> Error "At least one table is required"
-
-//let hasValidOutputFolder(m:Model) =
-//    match FileSystemService.IsValidPath m.OutputLocation with
-//    | true -> Ok m
-//    | _ -> Error "Invalid output path"
-
-//let hasRequiredFields =
-//    hasADatabaseSelected
-//    >> Result.bind hasAtLeastOneTableSelected
-//    >> Result.bind hasValidOutputFolder
 
 //let bindings model dispatch =
 //  [

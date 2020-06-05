@@ -18,10 +18,6 @@ type ConnectionStringItem = {
     Value:string
 }
 
-//type ConnectionString =
-//    { Name: ConnectionName
-//      Value: ConnectionStringValue }
-
 [<NoComparison>]
 type ConnectionTestState =
     | Pass
@@ -34,12 +30,14 @@ type ConnectionTestResult =
     { State: ConnectionTestState
       Message: string }
 
-type Database = { Name: string }
+type DbItem = { Name: string }
 
-type Table = { Name: string; Database: Database }
+let ToDatabaseItem (dbVal:string) : DbItem = { DbItem.Name = dbVal }
+
+type Table = { Name: string; Database: DbItem }
 
 type Query =
-    { Database: Database
+    { Database: DbItem
       Sql: string
       ConnectionString: ConnectionStringItem }
 
