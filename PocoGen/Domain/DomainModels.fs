@@ -1,7 +1,10 @@
-﻿module Models
+﻿module PocoGen.DomainModels
 
 open System
-open System.Data.SqlClient
+
+type DomainMessages =
+    | MissingConnectionString
+    | InvalidConnectionString
 
 type LogMessage =
     | Debug of string
@@ -9,14 +12,14 @@ type LogMessage =
     | Error of string
 
 type ConnectionName = string
+
 type ConnectionStringValue = string
 
 [<CLIMutable>]
-type ConnectionStringItem = {
-    Id:int
-    Name:string
-    Value:string
-}
+type ConnectionStringItem =
+    { Id: int
+      Name: string
+      Value: string }
 
 [<NoComparison>]
 type ConnectionTestState =
@@ -32,7 +35,7 @@ type ConnectionTestResult =
 
 type DbItem = { Name: string }
 
-let ToDatabaseItem (dbVal:string) : DbItem = { DbItem.Name = dbVal }
+let CreateDbItem (dbVal: string): DbItem = { DbItem.Name = dbVal }
 
 type Table = { Name: string; Database: DbItem }
 

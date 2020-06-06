@@ -1,4 +1,4 @@
-﻿namespace PocoGen
+﻿namespace PocoGen.Components
 
 open Fabulous.XamarinForms
 open Xamarin.Forms

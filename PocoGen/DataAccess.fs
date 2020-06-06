@@ -1,9 +1,9 @@
-﻿module DataAccess
+﻿module PocoGen.DataAccess
 
 open Dapper
 open System.Data.Common
 open System.Data.SqlClient
-open Models
+open PocoGen.DomainModels
 open System
 open PocoGen
 open PocoGen.Common

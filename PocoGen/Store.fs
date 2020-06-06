@@ -1,9 +1,7 @@
-﻿module Store
+﻿module PocoGen.Store
 
-open Xamarin.Essentials
-open Models
+open PocoGen.DomainModels
 open System
-open FSharp.Data.Dapper
 open LiteDB
 open LiteDB.FSharp
 

@@ -1,38 +1,37 @@
-﻿module CodeGenPage
+﻿module PocoGen.Page.CodeGenPage
 
 open System
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
-open Models
+open PocoGen.DomainModels
 open PocoGen
 open Common
+open PocoGen.Components
 open Store
 
-type PageState  =
+type PageState =
     | MissingRequiredFields of string
     | ValidForm
     | Init
 
 type Model =
-    { OutputLocation : FileOutputPath
-      ConnectionStrings : ConnectionStringItem list
-      Databases : DbItem list
-      Languages : Language list
-      Tables : Table list
-      SelectedConnectionString : ConnectionStringItem option
-      SelectedDatabase : DbItem option
-      SelectedLanguage : Language
-      SelectedTables : Table list
-      CodeGenPageState: PageState}
+    { OutputLocation: FileOutputPath
+      ConnectionStrings: ConnectionStringItem list
+      Databases: DbItem list
+      Languages: Language list
+      Tables: Table list
+      SelectedConnectionString: ConnectionStringItem option
+      SelectedDatabase: DbItem option
+      SelectedLanguage: Language
+      SelectedTables: Table list
+      CodeGenPageState: PageState }
 
-let fetchConnString() : ConnectionStringItem list =
-    Store.getAllConnectionStrings()
+let fetchConnString (): ConnectionStringItem list = Store.getAllConnectionStrings ()
 
-let fetchDatabases(conn:ConnectionStringItem) : DbItem list =
-    DataAccess.getDatabaseNames conn
+let fetchDatabases (conn: ConnectionStringItem): DbItem list = DataAccess.getDatabaseNames conn
 
-let fetchTables (dbName: DbItem) (conn: ConnectionStringItem) : Table list =
+let fetchTables (dbName: DbItem) (conn: ConnectionStringItem): Table list =
     DataAccess.getTableNamesFromMSSqlServerQuery dbName conn
 
 type Msg =
@@ -59,7 +58,7 @@ let initModel () =
       SelectedDatabase = None
       SelectedLanguage = Language.CSharp
       SelectedTables = []
-      CodeGenPageState = PageState.Init}
+      CodeGenPageState = PageState.Init }
 
 
 let init = initModel, Cmd.none
@@ -83,29 +82,38 @@ let update msg m =
     | ConnectionStringsLoaded cs -> { m with ConnectionStrings = cs }, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
 
-let hasADatabaseSelected(m:Model): PageState =
+let hasADatabaseSelected (m: Model): PageState =
     match m.SelectedDatabase.IsSome with
     | false -> MissingRequiredFields "Selected database is required"
     | _ -> ValidForm
 
-let hasAtLeastOneTableSelected(m:Model) =
+let hasAtLeastOneTableSelected (m: Model) =
     match m.SelectedTables |> List.isEmpty with
     | true -> ValidForm
     | _ -> MissingRequiredFields "At least one table is required"
 
-let hasValidOutputFolder(m:Model) =
+let hasValidOutputFolder (m: Model) =
     match IsValidPath m.OutputLocation with
     | true -> ValidForm
-    | _ -> MissingRequiredFields  "Invalid output path"
+    | _ -> MissingRequiredFields "Invalid output path"
 
-let hasRequiredFields =
-    hasADatabaseSelected
+let hasRequiredFields = hasADatabaseSelected
 
-let view (model : Model) dispatch =
-    let dbItems = model.Databases |> List.map (fun db -> db.Name)
-    let languages = model.Languages |> List.map (fun l -> l.ToString())
-    let conStrs = model.ConnectionStrings |> List.map (fun c -> c.Id.ToString() + c.Name)
-    let tables = model.Tables |> List.map(fun i -> View.TextCell i.Name)
+let view (model: Model) dispatch =
+    let dbItems =
+        model.Databases |> List.map (fun db -> db.Name)
+
+    let languages =
+        model.Languages
+        |> List.map (fun l -> l.ToString())
+
+    let conStrs =
+        model.ConnectionStrings
+        |> List.map (fun c -> c.Id.ToString() + c.Name)
+
+    let tables =
+        model.Tables
+        |> List.map (fun i -> View.TextCell i.Name)
 
     let innerLayout children =
         View.StackLayout
@@ -136,24 +144,3 @@ let view (model : Model) dispatch =
                         innerLayout
                             ([ Components.formLabel "Code Gen"
                                View.ListView(items = tables) ]) ]))
-
-
-//let bindings model dispatch =
-//  [
-//    "OutputLocation"|>Binding.twoWay
-//        (fun m -> m.OutputLocation )
-//        (fun v m -> v |> BrowseForOutputFolder)
-//    "Databases" |> Binding.twoWay
-//        (fun m -> m.Databases )
-//        (fun v m -> v |> PopulateAvailableDatabases)
-//    "Tables" |> Binding.twoWay
-//        (fun m -> m.Tables )
-//        (fun v m -> v |> PopulateAvailableTables)
-//    "SelectedDatabase" |> Binding.twoWay
-//        (fun m -> m.SelectedDatabase )
-//        (fun v m -> v |> SetSelectedDatabase)
-//    "SelectedLanguage" |> Binding.twoWay
-//        (fun m -> m.SelectedLanguage)
-//        (fun v m -> v |> SetSelectedLanguage)
-//    //"GenerateCode" |> Binding.cmdIfValid
-//]

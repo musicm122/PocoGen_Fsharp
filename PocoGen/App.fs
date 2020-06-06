@@ -6,7 +6,9 @@ open Fabulous.XamarinForms
 open Xamarin.Forms
 open FSharp.Data.Dapper
 open Fabulous.XamarinForms.LiveUpdate
-
+open PocoGen.Page.CodeGenPage
+open PocoGen.Page.ConnectionPage
+open PocoGen.Page
 
 module App =
 
@@ -31,8 +33,8 @@ module App =
         [ connPage; codeGenPage ]
 
     let initModels() =
-        { Model.CodeGenPageModel = CodeGenPage.initModel()
-          Model.ConnectionPageModel = ConnectionPage.init()
+        { Model.CodeGenPageModel = Page.CodeGenPage.initModel()
+          Model.ConnectionPageModel = Page.ConnectionPage.init()
           Model.WorkaroundNavPageBug = false
           Model.WorkaroundNavPageBugPendingCmd = Cmd.none }
 

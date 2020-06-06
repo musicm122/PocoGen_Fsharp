@@ -4,8 +4,7 @@ open System
 open Microsoft.FSharp.Reflection
 open System.Runtime.CompilerServices
 open System.IO
-open System
-open Models
+open PocoGen.DomainModels
 
 module Common =
     ///Returns the case name of the object with union type 'ty.

@@ -1,11 +1,12 @@
-﻿module ConnectionPage
+﻿module PocoGen.Page.ConnectionPage
 
 open System
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
-open Models
 open PocoGen
+open PocoGen.DomainModels
+open PocoGen.Components
 open Common
 
 type FormState =
