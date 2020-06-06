@@ -24,7 +24,7 @@ let testConnection (connectionString : ConnectionStringValue) : ConnectionTestRe
         { ConnectionTestResult.Message = "Error :" + ex.Message
           ConnectionTestResult.State = Fail ex }
 
-let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : ConnectionStringItem) =
+let getTableNamesFromMSSqlServerQueryAsync (database : DbItem) (conString : ConnectionStringItem) =
     async {
         use connection = new SqlConnection(conString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask
@@ -32,17 +32,21 @@ let getTableNamesFromMSSqlServerQueryAsync (database : Database) (conString : Co
         FROM [INFORMATION_SCHEMA].[TABLES] AS [t0]
         WHERE [t0].[TABLE_CATALOG] = @dbName"
         let! result = connection.QueryAsync<string>(sql, { Name = database.Name }) |> Async.AwaitTask
-        return result |> Array.ofSeq
+        return result
+        |> Seq.map(fun tVals -> {Table.Name=tVals; Table.Database=database})
+        |> Seq.toList
     }
 
-let getTableNamesFromMSSqlServerQuery (database : Database) (conString : ConnectionStringItem) =
+let getTableNamesFromMSSqlServerQuery (database : DbItem) (conString : ConnectionStringItem) =
     use connection = new SqlConnection(conString.Value)
     do connection.Open()
     let sql = @"SELECT [t0].[TABLE_NAME]
         FROM [INFORMATION_SCHEMA].[TABLES] AS [t0]
         WHERE [t0].[TABLE_CATALOG] = @dbName"
     let result = connection.Query<string>(sql, { Name = database.Name })
-    result |> Array.ofSeq
+    result
+    |> Seq.map(fun tVals -> {Table.Name=tVals; Table.Database=database})
+    |> Seq.toList
 
 let getDatabaseNames (connString : ConnectionStringItem) =
     use connection = new SqlConnection(connString.Value)
@@ -50,7 +54,9 @@ let getDatabaseNames (connString : ConnectionStringItem) =
     let sql = @"select name from sys.databases"
     let result = connection.Query<string>(sql)
     connection.Close()
-    result |> Array.ofSeq
+    result
+        |> Seq.map(fun dVal -> {DbItem.Name=dVal})
+        |> Seq.toList
 
 let getDatabaseNamesAsync (connString : ConnectionStringItem) =
     async {
@@ -59,5 +65,7 @@ let getDatabaseNamesAsync (connString : ConnectionStringItem) =
         let sql = @"select name from sys.databases"
         let! result = connection.QueryAsync<string>(sql) |> Async.AwaitTask
         connection.Close()
-        return result |> Array.ofSeq
+        return result
+            |> Seq.map(fun dVal -> {DbItem.Name=dVal})
+            |> Seq.toList
     }

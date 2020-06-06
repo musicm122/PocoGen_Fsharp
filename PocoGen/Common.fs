@@ -27,7 +27,7 @@ module Common =
 
     let IsValidPath(path : FileOutputPath) =
         try
-            let dir = new DirectoryInfo(path.FilePath)
+            let dir = DirectoryInfo(path.FilePath)
             dir.Exists
         with
         | :? ArgumentException -> false
