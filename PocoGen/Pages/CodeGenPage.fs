@@ -41,12 +41,13 @@ type Msg =
     | ConnectionStringsLoadFailed of string
     | SetSelectedDatabase of DbItem option
     | SetSelectedLanguage of Language
+    | SetSelectedConnection of ConnectionStringItem
     | BrowseForOutputFolder of FileOutputPath
     | PopulateAvailableDatabases of DbItem list
     | PopulateAvailableTables of Table list
     | GenerateCode
 
-let initModel() =
+let initModel () =
     { OutputLocation =
           { FileName = String.Empty
             FilePath = @"c:\" }
@@ -67,14 +68,20 @@ let update msg m =
     match msg with
     | SetSelectedDatabase db -> { m with SelectedDatabase = db }, Cmd.none
     | SetSelectedLanguage l -> { m with SelectedLanguage = l }, Cmd.none
+    | SetSelectedConnection con ->
+        { m with
+              SelectedConnectionString = Some(con) },
+        Cmd.none
     | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
     | PopulateAvailableDatabases dbs -> { m with Databases = dbs }, Cmd.none
     | PopulateAvailableTables tbls -> { m with Tables = tbls }, Cmd.none
     | GenerateCode -> m, Cmd.none
-    | LoadConnectionStrings -> { m with ConnectionStrings = fetchConnString() }, Cmd.none
+    | LoadConnectionStrings ->
+        { m with
+              ConnectionStrings = fetchConnString () },
+        Cmd.none
     | ConnectionStringsLoaded cs -> { m with ConnectionStrings = cs }, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
-
 
 let hasADatabaseSelected(m:Model): PageState =
     match m.SelectedDatabase.IsSome with
@@ -102,28 +109,33 @@ let view (model : Model) dispatch =
 
     let innerLayout children =
         View.StackLayout
-            (orientation = StackOrientation.Vertical, verticalOptions = LayoutOptions.StartAndExpand,
-             horizontalOptions = LayoutOptions.Start, margin = Thickness(1.0),
+            (orientation = StackOrientation.Vertical,
+             verticalOptions = LayoutOptions.StartAndExpand,
+             horizontalOptions = LayoutOptions.Start,
+             margin = Thickness(1.0),
              children = children)
 
     View.ContentPage
         (padding = Thickness(5.0),
          title = "Code Gen",
-         content = View.StackLayout
-                       (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.StartAndExpand,
-                        horizontalOptions = LayoutOptions.Start,
-                        padding = Thickness(1.0), margin = Thickness(20.0),
-                        children = [ innerLayout
-                                         ([ Components.formLabel "Connection Strings"
-                                            View.Picker(items = conStrs, title = "Connection Strings")
-                                            Components.formLabel "Databases"
-                                            View.Picker(items = dbItems, title = "Databases")
-                                            Components.formLabel "Languages"
-                                            View.Picker(items = languages, title = "Languages")])
-                                     innerLayout
-                                         ([ Components.formLabel "Code Gen"
-                                            View.ListView(items = tables) ])
-                                    ]))
+         content =
+             View.StackLayout
+                 (orientation = StackOrientation.Horizontal,
+                  verticalOptions = LayoutOptions.StartAndExpand,
+                  horizontalOptions = LayoutOptions.Start,
+                  padding = Thickness(1.0),
+                  margin = Thickness(20.0),
+                  children =
+                      [ innerLayout
+                          ([ Components.formLabel "Connection Strings"
+                             View.Picker(items = conStrs, title = "Connection Strings")
+                             Components.formLabel "Databases"
+                             View.Picker(items = dbItems, title = "Databases")
+                             Components.formLabel "Languages"
+                             View.Picker(items = languages, title = "Languages") ])
+                        innerLayout
+                            ([ Components.formLabel "Code Gen"
+                               View.ListView(items = tables) ]) ]))
 
 
 //let bindings model dispatch =
