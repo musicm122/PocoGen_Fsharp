@@ -142,15 +142,3 @@ let view (model: Model) dispatch =
                     buttonStack
                     Components.formLabel "Output"
                     Components.formLabel (sprintf "%s" model.Output) ]))
-
-//let bindings model dispatch =
-//  [
-//    "ConnectionString" |> Binding.twoWay
-//        (fun m -> m.ConnectionString )
-//        (fun v m -> v |> UpdateConnectionString)
-//    "Output" |> Binding.twoWay
-//        (fun m -> m.Output )
-//        (fun v m -> v |> UpdateConnectionString)
-//    "TestConnection" |> Binding.cmdIfValid
-//        (fun m -> requiredNotEmpty m.ConnectionString |> Result.map TestConnection)
-//  ]
