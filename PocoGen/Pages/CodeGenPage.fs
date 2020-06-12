@@ -47,12 +47,10 @@ type Msg =
     | GenerateCode
 
 let initModel () =
-    { OutputLocation =
-          { FileName = String.Empty
-            FilePath = @"c:\" }
+    { OutputLocation = DefaultOutputPath          
       ConnectionStrings = []
       Databases = []
-      Languages = [ Language.CSharp; Language.VbNet ]
+      Languages = DefaultLanguages
       Tables = []
       SelectedConnectionString = None
       SelectedDatabase = None

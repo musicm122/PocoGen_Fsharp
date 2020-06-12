@@ -86,6 +86,21 @@ type RawRowData =
 
 type FileOutputPath = { FileName: string; FilePath: string }
 
+let DefaultOutputPath =
+    { FileName = String.Empty
+      FilePath = @"c:\" }
+
+let EmptyFileOutputPath = 
+    { FileOutputPath.FileName = String.Empty
+      FilePath = String.Empty }
+
+let DefaultLanguages = [Language.CSharp; Language.VbNet]
+
+let EmptyConnectionStringItem =
+    { ConnectionStringItem.Id = 0
+      ConnectionStringItem.Value = String.Empty
+      ConnectionStringItem.Name = String.Empty }
+
 type StoreConnectionStringResult =
     | Success
     | Error of string
