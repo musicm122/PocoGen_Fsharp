@@ -2,11 +2,12 @@
 
 open PocoGen.DomainModels
 open System
+open System.Data.SqlClient
 open LiteDB
 open LiteDB.FSharp
 
 
-let dbFileName = "conStrings.db"
+let dbFileName = "Filename=conStrings.db;Mode=Exclusive;"
 let collectionName = "ConnectionStrings"
 
 let addConnectionString (connString : ConnectionStringItem) : StoreConnectionStringResult =
@@ -14,21 +15,19 @@ let addConnectionString (connString : ConnectionStringItem) : StoreConnectionStr
         let mapper = FSharpBsonMapper()
         use db = new LiteDatabase(dbFileName, mapper)
         db.GetCollection<ConnectionStringItem>(collectionName)
-            .Insert(
-                { ConnectionStringItem.Id=0
-                  ConnectionStringItem.Name=connString.Name
-                  ConnectionStringItem.Value=connString.Value })
-            |> ignore
+            .Insert({ ConnectionStringItem.Id = 0
+                      ConnectionStringItem.Name = connString.Name
+                      ConnectionStringItem.Value = connString.Value })
+        |> ignore
         StoreConnectionStringResult.Success
-    with
-        :? Exception as ex -> Error ex.Message
+    with :? SqlException as ex -> Error ex.Message
 
-let getConnectionStringById (id:int) : ConnectionStringItem =
+let getConnectionStringById (id : int) : ConnectionStringItem =
     let mapper = FSharpBsonMapper()
     use db = new LiteDatabase(dbFileName, mapper)
-    db.GetCollection<ConnectionStringItem>(collectionName).FindOne(fun c->c.Id = id)
+    db.GetCollection<ConnectionStringItem>(collectionName).FindOne(fun c -> c.Id = id)
 
-let getAllConnectionStrings () : ConnectionStringItem list =
+let getAllConnectionStrings() : ConnectionStringItem list =
     let mapper = FSharpBsonMapper()
     use db = new LiteDatabase(dbFileName, mapper)
     db.GetCollection<ConnectionStringItem>(collectionName).FindAll() |> List.ofSeq
