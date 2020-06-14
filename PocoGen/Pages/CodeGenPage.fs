@@ -8,7 +8,6 @@ open PocoGen.DomainModels
 open PocoGen
 open Common
 open PocoGen.Components
-open Store
 
 type PageState =
     | MissingRequiredFields of string
@@ -27,6 +26,8 @@ type Model =
       SelectedTables: Table list
       CodeGenPageState: PageState }
 
+let hasStoredConnectionStrings (): bool = Store.getAllConnectionStrings().IsEmpty
+
 let fetchConnString (): ConnectionStringItem list = Store.getAllConnectionStrings ()
 
 let fetchDatabases (conn: ConnectionStringItem): DbItem list = DataAccess.getDatabaseNames conn
@@ -42,26 +43,43 @@ type Msg =
     | SetSelectedLanguage of Language
     | SetSelectedConnection of ConnectionStringItem
     | BrowseForOutputFolder of FileOutputPath
-    | PopulateAvailableDatabases of DbItem list
-    | PopulateAvailableTables of Table list
     | GenerateCode
 
-let initModel () =
-    { OutputLocation = DefaultOutputPath          
-      ConnectionStrings = []
-      Databases = []
+let initModel (): Model =
+
+    let conStrings =
+        if hasStoredConnectionStrings () then fetchConnString () else []
+
+    let selectedConString: ConnectionStringItem option =
+        if conStrings.Length > 0 then Some conStrings.Head else None
+
+    let dbs: DbItem list =
+        match selectedConString with
+        | Some conStr -> fetchDatabases conStr
+        | None -> []
+
+    let selectedDb: DbItem option =
+        if dbs.Length > 0 then Some dbs.Head else None
+
+    let tables: Table list =
+        match selectedDb with
+        | Some db -> fetchTables db selectedConString.Value
+        | None -> []
+
+    { OutputLocation = DefaultOutputPath
+      ConnectionStrings = conStrings
+      Databases = dbs
       Languages = DefaultLanguages
-      Tables = []
-      SelectedConnectionString = None
-      SelectedDatabase = None
-      SelectedLanguage = Language.CSharp
+      Tables = tables
+      SelectedConnectionString = selectedConString
+      SelectedDatabase = selectedDb
+      SelectedLanguage = DefaultLanguages.Head
       SelectedTables = []
       CodeGenPageState = PageState.Init }
 
-
 let init = initModel, Cmd.none
 
-let update msg m =
+let update msg m: Model * Cmd<Msg> =
     match msg with
     | SetSelectedDatabase db -> { m with SelectedDatabase = db }, Cmd.none
     | SetSelectedLanguage l -> { m with SelectedLanguage = l }, Cmd.none
@@ -70,48 +88,47 @@ let update msg m =
               SelectedConnectionString = Some(con) },
         Cmd.none
     | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
-    | PopulateAvailableDatabases dbs -> { m with Databases = dbs }, Cmd.none
-    | PopulateAvailableTables tbls -> { m with Tables = tbls }, Cmd.none
     | GenerateCode -> m, Cmd.none
-    | LoadConnectionStrings ->
-        { m with
-              ConnectionStrings = fetchConnString () },
-        Cmd.none
-    | ConnectionStringsLoaded cs -> { m with ConnectionStrings = cs }, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
+    | _ -> m, Cmd.none
 
 let hasADatabaseSelected (m: Model): PageState =
     match m.SelectedDatabase.IsSome with
     | false -> MissingRequiredFields "Selected database is required"
     | _ -> ValidForm
 
-let hasAtLeastOneTableSelected (m: Model) =
+let hasAtLeastOneTableSelected (m: Model): PageState =
     match m.SelectedTables |> List.isEmpty with
     | true -> ValidForm
     | _ -> MissingRequiredFields "At least one table is required"
 
-let hasValidOutputFolder (m: Model) =
+let hasValidOutputFolder (m: Model): PageState =
     match IsValidPath m.OutputLocation with
     | true -> ValidForm
     | _ -> MissingRequiredFields "Invalid output path"
 
 let hasRequiredFields = hasADatabaseSelected
 
-let view (model: Model) dispatch =
-    let dbItems =
-        model.Databases |> List.map (fun db -> db.Name)
+let toDbItemPickerOption (dbs: DbItem list): string list = dbs |> List.map (fun db -> db.Name)
 
-    let languages =
-        model.Languages
-        |> List.map (fun l -> l.ToString())
+let toLangagePickerOption (langs: Language list): string list =
+    langs |> List.map (fun l -> l.ToString())
+
+let toConStrPickerOptions (constrs: ConnectionStringItem list): string list =
+    constrs
+    |> List.map (fun c -> c.Id.ToString() + c.Name)
+
+let toTableCell (tables: Table list): ViewElement list =
+    tables |> List.map (fun i -> View.TextCell i.Name)
+
+let view (model: Model) dispatch: ViewElement =
+    let dbItems = model.Databases |> toDbItemPickerOption
+    let langs = model.Languages |> toLangagePickerOption
 
     let conStrs =
-        model.ConnectionStrings
-        |> List.map (fun c -> c.Id.ToString() + c.Name)
+        model.ConnectionStrings |> toConStrPickerOptions
 
-    let tables =
-        model.Tables
-        |> List.map (fun i -> View.TextCell i.Name)
+    let tables = model.Tables |> toTableCell
 
     let innerLayout children =
         View.StackLayout
@@ -138,7 +155,7 @@ let view (model: Model) dispatch =
                              Components.formLabel "Databases"
                              View.Picker(items = dbItems, title = "Databases")
                              Components.formLabel "Languages"
-                             View.Picker(items = languages, title = "Languages") ])
+                             View.Picker(items = langs, title = "Languages") ])
                         innerLayout
                             ([ Components.formLabel "Code Gen"
                                View.ListView(items = tables) ]) ]))
