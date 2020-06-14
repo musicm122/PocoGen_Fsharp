@@ -14,11 +14,11 @@ type FormState =
     | MissingConnStrValue
 
 type Model =
-    { ConnectionString: ConnectionStringItem
-      CurrentFormState: FormState
-      Output: string }
+    { ConnectionString : ConnectionStringItem
+      CurrentFormState : FormState
+      Output : string }
 
-let init () =
+let init() : Model =
     { ConnectionString =
           { ConnectionStringItem.Id = 0
             ConnectionStringItem.Value = String.Empty
@@ -29,47 +29,42 @@ let init () =
 type Msg =
     | UpdateConnectionStringValue of string
     | UpdateConnectionStringName of string
-    | TestConnection of ConnectionStringItem
+    | TestConnection
+    | TestConnectionComplete of Model
     | SaveConnectionString of ConnectionStringItem
     | UpdateOutput of string
 
-let runConnectionTest (model: Model): Model =
-    let connectionTestResult =
-        DataAccess.testConnection model.ConnectionString.Value
+let runConnectionTestAsyncCmd (model : Model) : Cmd<Msg> =
+    async {
+        let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value
 
-    let testResult =
-        match connectionTestResult.State with
-        | Pass ->
-            { model with
-                  Output = connectionTestResult.Message }
-        | Fail ex ->
-            { model with
-                  Output = connectionTestResult.Message }
-        | _ -> { model with Output = String.Empty }
+        let result =
+            match connectionTestResult.State with
+            | Pass -> { model with Output = connectionTestResult.Message }
+            | Fail ex -> { model with Output = connectionTestResult.Message }
+            | _ -> { model with Output = String.Empty }
 
-    testResult
+        return TestConnectionComplete result
+    }
+    |> Cmd.ofAsyncMsg
 
-let hasRequredSaveFields (conStr: ConnectionStringItem): bool =
-    conStr.Name.IsNullOrWhiteSpace()
-    && conStr.Value.IsNullOrWhiteSpace()
+let hasRequredSaveFields (conStr : ConnectionStringItem) : bool =
+    conStr.Name.IsNullOrWhiteSpace() && conStr.Value.IsNullOrWhiteSpace()
 
-let saveConnection (model: Model): Model =
-    let connectionTestResult =
-        DataAccess.testConnection model.ConnectionString.Value
+let saveConnection (model : Model) : Model =
+    let connectionTestResult = DataAccess.testConnection model.ConnectionString.Value
+
     match connectionTestResult.State with
     | Pass ->
         let result = Store.addConnectionString model.ConnectionString
+
         match result with
-        | Success ->
-            { model with Output = "Saved Successfully" }
-        | Error err->
-            { model with Output = err }
-    | Fail ex ->
-        { model with
-              Output = "Attempt to save failed with " + connectionTestResult.Message }
+        | Success -> { model with Output = "Saved Successfully" }
+        | Error err -> { model with Output = err }
+    | Fail ex -> { model with Output = "Attempt to save failed with " + connectionTestResult.Message }
     | _ -> { model with Output = String.Empty }
 
-let update (msg: Msg) (m: Model) =
+let update (msg : Msg) (m : Model) : Model * Cmd<Msg> =
     match msg with
     | UpdateConnectionStringValue conStringVal ->
         { m with
@@ -80,8 +75,7 @@ let update (msg: Msg) (m: Model) =
               CurrentFormState =
                   match hasRequredSaveFields m.ConnectionString with
                   | false -> MissingConnStrValue
-                  | _ -> Valid },
-        Cmd.none
+                  | _ -> Valid }, Cmd.none
 
     | UpdateConnectionStringName conStringName ->
         { m with
@@ -92,26 +86,20 @@ let update (msg: Msg) (m: Model) =
               CurrentFormState =
                   match hasRequredSaveFields m.ConnectionString with
                   | false -> MissingConnStrValue
-                  | _ -> Valid },
-        Cmd.none
+                  | _ -> Valid }, Cmd.none
 
     | UpdateOutput output -> { m with Output = output }, Cmd.none
-    | TestConnection con ->
-        let testResult = runConnectionTest m
-        { m with
-              Output = testResult.Output + "\r\n" },
-        Cmd.none
-    | SaveConnectionString (_) -> saveConnection m, Cmd.none
+    | TestConnection -> m, Cmd.none
+    | TestConnectionComplete testResult -> { m with Output = testResult.Output + "\r\n" }, Cmd.none
+    | SaveConnectionString(_) -> saveConnection m, Cmd.none
 
-let view (model: Model) dispatch =
+let view (model : Model) dispatch : ViewElement =
     let updateConnectionStringValue = UpdateConnectionStringValue >> dispatch
     let updateConnectionStringName = UpdateConnectionStringName >> dispatch
 
-    let testConnection =
-        (fun () -> dispatch (TestConnection model.ConnectionString))
+    let testConnection = (fun () -> dispatch (TestConnection))
 
-    let saveConnectionString =
-        (fun () -> dispatch (SaveConnectionString model.ConnectionString))
+    let saveConnectionString = (fun () -> dispatch (SaveConnectionString model.ConnectionString))
 
     let testButton =
         (match model.CurrentFormState with
@@ -126,19 +114,15 @@ let view (model: Model) dispatch =
     let buttonStack =
         View.StackLayout
             (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.Center,
-                horizontalOptions = LayoutOptions.Fill,
-                children=[ testButton; saveButton])
-
+             horizontalOptions = LayoutOptions.Fill, children = [ testButton; saveButton ])
 
     View.ContentPage
-        (padding = Thickness(5.0),
-         title = "Connection Test",
-         content =
-             Components.verticalStack
-                 ([ Components.formLabel "Connection String Label"
-                    Components.formEntry model.ConnectionString.Name updateConnectionStringName
-                    Components.formLabel "Connection String Value"
-                    Components.formMultiLineEditor model.ConnectionString.Value updateConnectionStringValue
-                    buttonStack
-                    Components.formLabel "Output"
-                    Components.formLabel (sprintf "%s" model.Output) ]))
+        (padding = Thickness(5.0), title = "Connection Test",
+         content = Components.verticalStack
+                       ([ Components.formLabel "Connection String Label"
+                          Components.formEntry model.ConnectionString.Name updateConnectionStringName
+                          Components.formLabel "Connection String Value"
+                          Components.formMultiLineEditor model.ConnectionString.Value updateConnectionStringValue
+                          buttonStack
+                          Components.formLabel "Output"
+                          Components.formLabel (sprintf "%s" model.Output) ]))
