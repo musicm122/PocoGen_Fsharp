@@ -17,12 +17,35 @@ let testConnection (connectionString : ConnectionStringValue) : ConnectionTestRe
               ConnectionTestResult.State = Fail ex }
         | false ->
             use conn = new SqlConnection(connectionString)
+            conn.Open()
+            conn.Close()
             { ConnectionTestResult.Message = "Success"
               ConnectionTestResult.State = Pass }
-    with
-    | :? Exception as ex ->
+    with :? SqlException as ex ->
         { ConnectionTestResult.Message = "Error :" + ex.Message
           ConnectionTestResult.State = Fail ex }
+
+let testConnectionAsync (connectionString : ConnectionStringValue) : Async<ConnectionTestResult> =
+    async {
+        try
+            match connectionString.IsNullOrWhiteSpace() with
+            | true ->
+                let ex = ArgumentException("Missing required argument")
+                return { ConnectionTestResult.Message = "SQL Error " + ex.Message
+                         ConnectionTestResult.State = Fail ex }
+            | false ->
+                use conn = new SqlConnection(connectionString)
+                conn.OpenAsync()
+                |> Async.AwaitTask
+                |> ignore
+                conn.Close()
+                return { ConnectionTestResult.Message = "Success"
+                         ConnectionTestResult.State = Pass }
+        with :? SqlException as ex ->
+            return { ConnectionTestResult.Message = "Error :" + ex.Message
+                     ConnectionTestResult.State = Fail ex }
+    }
+
 
 let getTableNamesFromMSSqlServerQueryAsync (database : DbItem) (conString : ConnectionStringItem) =
     async {
@@ -33,8 +56,10 @@ let getTableNamesFromMSSqlServerQueryAsync (database : DbItem) (conString : Conn
         WHERE [t0].[TABLE_CATALOG] = @dbName"
         let! result = connection.QueryAsync<string>(sql, { Name = database.Name }) |> Async.AwaitTask
         return result
-        |> Seq.map(fun tVals -> {Table.Name=tVals; Table.Database=database})
-        |> Seq.toList
+               |> Seq.map (fun tVals ->
+                   { Table.Name = tVals
+                     Table.Database = database })
+               |> Seq.toList
     }
 
 let getTableNamesFromMSSqlServerQuery (database : DbItem) (conString : ConnectionStringItem) =
@@ -45,7 +70,9 @@ let getTableNamesFromMSSqlServerQuery (database : DbItem) (conString : Connectio
         WHERE [t0].[TABLE_CATALOG] = @dbName"
     let result = connection.Query<string>(sql, { Name = database.Name })
     result
-    |> Seq.map(fun tVals -> {Table.Name=tVals; Table.Database=database})
+    |> Seq.map (fun tVals ->
+        { Table.Name = tVals
+          Table.Database = database })
     |> Seq.toList
 
 let getDatabaseNames (connString : ConnectionStringItem) =
@@ -55,8 +82,8 @@ let getDatabaseNames (connString : ConnectionStringItem) =
     let result = connection.Query<string>(sql)
     connection.Close()
     result
-        |> Seq.map(fun dVal -> {DbItem.Name=dVal})
-        |> Seq.toList
+    |> Seq.map (fun dVal -> { DbItem.Name = dVal })
+    |> Seq.toList
 
 let getDatabaseNamesAsync (connString : ConnectionStringItem) =
     async {
@@ -66,6 +93,6 @@ let getDatabaseNamesAsync (connString : ConnectionStringItem) =
         let! result = connection.QueryAsync<string>(sql) |> Async.AwaitTask
         connection.Close()
         return result
-            |> Seq.map(fun dVal -> {DbItem.Name=dVal})
-            |> Seq.toList
+               |> Seq.map (fun dVal -> { DbItem.Name = dVal })
+               |> Seq.toList
     }
