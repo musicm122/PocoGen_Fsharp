@@ -47,10 +47,10 @@ module App =
         match msg with
         | ConnectionPageMsg msg ->
             let m, cmd = ConnectionPage.update msg model.ConnectionPageModel
-            { model with ConnectionPageModel = m }, cmd
+            { model with ConnectionPageModel = m }, Cmd.map ConnectionPageMsg cmd
         | CodeGenPageMsg msg ->
             let m, cmd = CodeGenPage.update msg model.CodeGenPageModel
-            { model with CodeGenPageModel = m }, cmd
+            { model with CodeGenPageModel = m }, Cmd.map CodeGenPageMsg cmd
 
     let view (model : Model) dispatch =
         let connPage = ConnectionPage.view model.ConnectionPageModel (ConnectionPageMsg >> dispatch)
