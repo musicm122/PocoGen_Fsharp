@@ -1,6 +1,5 @@
 ﻿module PocoGen.Page.CodeGenPage
 
-open System
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
@@ -26,7 +25,19 @@ type Model =
       SelectedTables: Table list
       CodeGenPageState: PageState }
 
-let hasStoredConnectionStrings (): bool = Store.getAllConnectionStrings().IsEmpty
+let initModel() =
+    { OutputLocation = DefaultOutputPath
+      ConnectionStrings = []
+      Databases = []
+      Languages = DefaultLanguages
+      Tables = []
+      SelectedConnectionString = None
+      SelectedDatabase = None
+      SelectedLanguage = CSharp
+      SelectedTables = []
+      CodeGenPageState = PageState.Init }
+
+let hasStoredConnectionStrings (): bool = Store.getAllConnectionStrings().Length > 0
 
 let fetchConnString (): ConnectionStringItem list = Store.getAllConnectionStrings ()
 
@@ -44,14 +55,26 @@ type Msg =
     | SetSelectedConnection of ConnectionStringItem
     | BrowseForOutputFolder of FileOutputPath
     | GenerateCode
+    | LoadConnectionData
+    | ClearConnections
 
-let initModel (): Model =
 
+let canConnectToDb conString :Async<bool> =    
+    async {
+        let! result = DataAccess.testConnectionAsync conString 
+        match result with
+        | result when result.State = Pass -> return true
+        | _ -> return false 
+    }
+
+let refreshModel (): Model =
     let conStrings =
         if hasStoredConnectionStrings () then fetchConnString () else []
-
-    let selectedConString: ConnectionStringItem option =
-        if conStrings.Length > 0 then Some conStrings.Head else None
+    
+    let selectedConString: ConnectionStringItem option =                
+        match conStrings with
+        |  conStrings when conStrings.Length > 0  -> Some conStrings.Head
+        | _ -> None
 
     let dbs: DbItem list =
         match selectedConString with
@@ -77,7 +100,7 @@ let initModel (): Model =
       SelectedTables = []
       CodeGenPageState = PageState.Init }
 
-let init = initModel, Cmd.none
+let init() = initModel(), Cmd.none
 
 let update msg m: Model * Cmd<Msg> =
     match msg with
@@ -90,6 +113,7 @@ let update msg m: Model * Cmd<Msg> =
     | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
     | GenerateCode -> m, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
+    | LoadConnectionData -> refreshModel (), Cmd.none
     | _ -> m, Cmd.none
 
 let hasADatabaseSelected (m: Model): PageState =
@@ -138,6 +162,17 @@ let view (model: Model) dispatch: ViewElement =
              margin = Thickness(1.0),
              children = children)
 
+    let loadBtn =
+        Components.formButton "Load Db Connection Data" (fun () -> dispatch (LoadConnectionData)) true
+    
+    let clearBtn =
+        Components.formButton "Clear Saved Connections" (fun() -> dispatch(ClearConnections)) true
+
+    let buttonStack =
+        View.StackLayout
+            (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.Center,
+             horizontalOptions = LayoutOptions.Fill, children = [ loadBtn; clearBtn ])
+
     View.ContentPage
         (padding = Thickness(5.0),
          title = "Code Gen",
@@ -150,7 +185,8 @@ let view (model: Model) dispatch: ViewElement =
                   margin = Thickness(20.0),
                   children =
                       [ innerLayout
-                          ([ Components.formLabel "Connection Strings"
+                          ([ buttonStack
+                             Components.formLabel "Connection Strings"
                              View.Picker(items = conStrs, title = "Connection Strings")
                              Components.formLabel "Databases"
                              View.Picker(items = dbItems, title = "Databases")
