@@ -1,7 +1,6 @@
 ﻿namespace PocoGen
 
 open System
-open Microsoft.FSharp.Reflection
 open System.Runtime.CompilerServices
 open System.IO
 open PocoGen.DomainModels

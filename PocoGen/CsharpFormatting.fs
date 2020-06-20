@@ -27,7 +27,7 @@ let typeLookup name =
     | _ -> typeof<Object>
 
 let getNullableTypes =
-    let nullables = new HashSet<Type>()
+    let nullables = HashSet<Type>()
     nullables.Add(typeof<int>) |> ignore
     nullables.Add(typeof<int16>) |> ignore
     nullables.Add(typeof<double>) |> ignore
@@ -63,7 +63,7 @@ let formatTypeName (dataType: string): string =
 
             match rx.IsMatch(item) with
             | false -> item
-            | true -> rx.Replace(item, new MatchEvaluator(replace))
+            | true -> rx.Replace(item, MatchEvaluator(replace))
 
     dataType
     |> replaceSystem

@@ -1,7 +1,5 @@
 ﻿module PocoGen.DomainPrimitives
 
-open Rop
-
 type LogMessage =
     | Debug of string
     | Info of string

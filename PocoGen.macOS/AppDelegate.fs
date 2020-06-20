@@ -11,7 +11,7 @@ type AppDelegate() =
     inherit FormsApplicationDelegate()
     let style = NSWindowStyle.Closable ||| NSWindowStyle.Resizable ||| NSWindowStyle.Titled
 
-    let rect = new CoreGraphics.CGRect(nfloat 200.0, nfloat 1000.0, nfloat 1024.0, nfloat 768.0)
+    let rect = CoreGraphics.CGRect(nfloat 200.0, nfloat 1000.0, nfloat 1024.0, nfloat 768.0)
 
     let window =
         new NSWindow(rect, style, NSBackingStore.Buffered, false, Title = "Xamarin.Forms on Mac!",
@@ -21,7 +21,7 @@ type AppDelegate() =
 
     override this.DidFinishLaunching(notification : NSNotification) =
         Forms.Init()
-        this.LoadApplication(new PocoGen.App())
+        this.LoadApplication(PocoGen.App())
 
         base.DidFinishLaunching(notification)
 

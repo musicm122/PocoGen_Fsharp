@@ -1,11 +1,9 @@
 ﻿module PocoGen.DataAccess
 
 open Dapper
-open System.Data.Common
 open System.Data.SqlClient
 open PocoGen.DomainModels
 open System
-open PocoGen
 open PocoGen.Common
 
 let testConnection (connectionString: ConnectionStringValue): ConnectionTestResult =
@@ -28,7 +26,7 @@ let testConnection (connectionString: ConnectionStringValue): ConnectionTestResu
           ConnectionTestResult.State = Fail ex }
 
 let testConnectionAsync (connectionString: ConnectionStringValue): Async<ConnectionTestResult> =
-    async {
+    async {        
         try
             match connectionString.IsNullOrWhiteSpace() with
             | true ->
@@ -39,7 +37,9 @@ let testConnectionAsync (connectionString: ConnectionStringValue): Async<Connect
                          ConnectionTestResult.State = Fail ex }
             | false ->
                 use conn = new SqlConnection(connectionString)
-                conn.OpenAsync() |> Async.AwaitTask |> ignore
+                conn.OpenAsync()
+                |> Async.AwaitTask
+                |> ignore
                 conn.Close()
                 return { ConnectionTestResult.Message = "Success"
                          ConnectionTestResult.State = Pass }
@@ -47,7 +47,6 @@ let testConnectionAsync (connectionString: ConnectionStringValue): Async<Connect
             return { ConnectionTestResult.Message = "Error :" + ex.Message
                      ConnectionTestResult.State = Fail ex }
     }
-
 
 let getTableNamesFromMSSqlServerQueryAsync (database: DbItem) (conString: ConnectionStringItem) =
     async {
@@ -58,9 +57,7 @@ let getTableNamesFromMSSqlServerQueryAsync (database: DbItem) (conString: Connec
         FROM [INFORMATION_SCHEMA].[TABLES] AS [t0]
         WHERE [t0].[TABLE_CATALOG] = @dbName"
 
-        let! result =
-            connection.QueryAsync<string>(sql, { Name = database.Name })
-            |> Async.AwaitTask
+        let! result = connection.QueryAsync<string>(sql, { Name = database.Name }) |> Async.AwaitTask
         return result
                |> Seq.map (fun tVals ->
                    { Table.Name = tVals
@@ -100,26 +97,10 @@ let getDatabaseNamesAsync (connString: ConnectionStringItem) =
         use connection = new SqlConnection(connString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask
         let sql = @"select name from sys.databases"
-        let! result =
-            connection.QueryAsync<string>(sql)
-            |> Async.AwaitTask
+        let! result = connection.QueryAsync<string>(sql) |> Async.AwaitTask
         connection.Close()
         return result
                |> Seq.map (fun dVal -> { DbItem.Name = dVal })
                |> Seq.toList
     }
-> Seq.toList
 
-let getDatabaseNamesAsync (connString: ConnectionStringItem) =
-    async {
-        use connection = new SqlConnection(connString.Value)
-        do! connection.OpenAsync() |> Async.AwaitTask
-        let sql = @"select name from sys.databases"
-        let! result =
-            connection.QueryAsync<string>(sql)
-            |> Async.AwaitTask
-        connection.Close()
-        return result
-               |> Seq.map (fun dVal -> { DbItem.Name = dVal })
-               |> Seq.toList
-    }

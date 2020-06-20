@@ -1,7 +1,6 @@
 ﻿module PocoGen.Store
 
 open PocoGen.DomainModels
-open System
 open System.Data.SqlClient
 open LiteDB
 open LiteDB.FSharp

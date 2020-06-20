@@ -4,7 +4,6 @@ open Gtk
 
 module Main =
 
-    open System;
     open Xamarin.Forms;
     open Xamarin.Forms.Platform.GTK;
 
@@ -15,7 +14,7 @@ module Main =
         let app = PocoGen.App()
         let win = new FormsWindow()
         win.LoadApplication(app)
-        win.SetApplicationTitle("PocoGen")
+        win.SetApplicationTitle("Plain Old Object Generator")
         win.Show()
         Application.Run()
         0

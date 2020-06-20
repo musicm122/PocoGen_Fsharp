@@ -2,7 +2,6 @@
 
 module MainWindow =
 
-    open System
     open Gtk
 
     type MyWindow() as this =

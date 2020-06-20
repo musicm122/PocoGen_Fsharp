@@ -1,7 +1,6 @@
 ﻿namespace PocoGen.GTK
 
 open System.Reflection
-open System.Runtime.CompilerServices
 
 [<assembly:AssemblyTitle("PocoGen.GTK")>]
 [<assembly:AssemblyDescription("")>]

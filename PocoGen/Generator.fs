@@ -1,9 +1,6 @@
 module PocoGen.Generator
 
-open System.Collections.Generic
-open System
 open System.Data
-open System.Text
 
 //let TypeAliases = new Dictionary<Type, string> ()
 let DumpCSharpClass (connection: IDbConnection) (sql: string) (className: string): string =
@@ -14,7 +11,6 @@ let DumpCSharpClass (connection: IDbConnection) (sql: string) (className: string
     let cmd = connection.CreateCommand()
     cmd.CommandText <- sql
     let reader = cmd.ExecuteReader()
-    let sb = StringBuilder()
 
     let resultClass =
         reader.GetSchemaTable().Select()

@@ -1,13 +1,9 @@
 ﻿namespace PocoGen
 
-open System
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
-open FSharp.Data.Dapper
 open Fabulous.XamarinForms.LiveUpdate
-open PocoGen.Page.CodeGenPage
-open PocoGen.Page.ConnectionPage
 open PocoGen.Page
 
 module App =
@@ -55,11 +51,6 @@ module App =
     let view (model : Model) dispatch =
         let connPage = ConnectionPage.view model.ConnectionPageModel (ConnectionPageMsg >> dispatch)
         let codeGenPage = CodeGenPage.view model.CodeGenPageModel (CodeGenPageMsg >> dispatch)
-
-        let allPages =
-            { ConnectionPage = connPage
-              CodeGenPage = codeGenPage }
-
         View.TabbedPage(title = "Poco Gen", children = [ connPage; codeGenPage ])
 
 
