@@ -30,3 +30,8 @@ let getAllConnectionStrings() : ConnectionStringItem list =
     let mapper = FSharpBsonMapper()
     use db = new LiteDatabase(dbFileName, mapper)
     db.GetCollection<ConnectionStringItem>(collectionName).FindAll() |> List.ofSeq
+
+let clearAllSavedConnections():bool = 
+    let mapper = FSharpBsonMapper()
+    use db = new LiteDatabase(dbFileName, mapper)
+    db.DropCollection(collectionName)
