@@ -103,4 +103,3 @@ let getDatabaseNamesAsync (connString: ConnectionStringItem) =
                |> Seq.map (fun dVal -> { DbItem.Name = dVal })
                |> Seq.toList
     }
-
