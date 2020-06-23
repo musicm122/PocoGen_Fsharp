@@ -25,7 +25,7 @@ type Model =
       SelectedTables: Table list
       CodeGenPageState: PageState }
 
-let initModel() =
+let initModel () =
     { OutputLocation = DefaultOutputPath
       ConnectionStrings = []
       Databases = []
@@ -37,7 +37,11 @@ let initModel() =
       SelectedTables = []
       CodeGenPageState = PageState.Init }
 
-let hasStoredConnectionStrings (): bool = Store.getAllConnectionStrings().Length > 0
+let clearSavedConnections() = 
+    Store.clearAllSavedConnections()
+
+let hasStoredConnectionStrings (): bool =
+    Store.getAllConnectionStrings().Length > 0
 
 let fetchConnString (): ConnectionStringItem list = Store.getAllConnectionStrings ()
 
@@ -59,21 +63,21 @@ type Msg =
     | ClearConnections
 
 
-let canConnectToDb conString :Async<bool> =    
+let canConnectToDb conString: Async<bool> =
     async {
-        let! result = DataAccess.testConnectionAsync conString 
+        let! result = DataAccess.testConnectionAsync conString
         match result with
         | result when result.State = Pass -> return true
-        | _ -> return false 
+        | _ -> return false
     }
 
 let refreshModel (): Model =
     let conStrings =
         if hasStoredConnectionStrings () then fetchConnString () else []
-    
-    let selectedConString: ConnectionStringItem option =                
+
+    let selectedConString: ConnectionStringItem option =
         match conStrings with
-        |  conStrings when conStrings.Length > 0  -> Some conStrings.Head
+        | conStrings when conStrings.Length > 0 -> Some conStrings.Head
         | _ -> None
 
     let dbs: DbItem list =
@@ -100,7 +104,7 @@ let refreshModel (): Model =
       SelectedTables = []
       CodeGenPageState = PageState.Init }
 
-let init() = initModel(), Cmd.none
+let init () = initModel (), Cmd.none
 
 let update msg m: Model * Cmd<Msg> =
     match msg with
@@ -114,7 +118,9 @@ let update msg m: Model * Cmd<Msg> =
     | GenerateCode -> m, Cmd.none
     | ConnectionStringsLoadFailed err -> m, Cmd.none
     | LoadConnectionData -> refreshModel (), Cmd.none
-    | _ -> m, Cmd.none
+    | ClearConnections ->  
+        let result = clearSavedConnections() 
+        m, Cmd.none
 
 let hasADatabaseSelected (m: Model): PageState =
     match m.SelectedDatabase.IsSome with
@@ -164,14 +170,16 @@ let view (model: Model) dispatch: ViewElement =
 
     let loadBtn =
         Components.formButton "Load Db Connection Data" (fun () -> dispatch (LoadConnectionData)) true
-    
+
     let clearBtn =
-        Components.formButton "Clear Saved Connections" (fun() -> dispatch(ClearConnections)) true
+        Components.formButton "Clear Saved Connections" (fun () -> dispatch (ClearConnections)) true
 
     let buttonStack =
         View.StackLayout
-            (orientation = StackOrientation.Horizontal, verticalOptions = LayoutOptions.Center,
-             horizontalOptions = LayoutOptions.Fill, children = [ loadBtn; clearBtn ])
+            (orientation = StackOrientation.Horizontal,
+             verticalOptions = LayoutOptions.Center,
+             horizontalOptions = LayoutOptions.Fill,
+             children = [ loadBtn; clearBtn ])
 
     View.ContentPage
         (padding = Thickness(5.0),
