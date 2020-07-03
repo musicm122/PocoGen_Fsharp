@@ -3,9 +3,7 @@
 open System
 open Xunit
 open FsUnit.Xunit
-open PocoGen.DomainModels
-open PocoGen.Page
-open PocoGen.Page.ConnectionPage
+open PocoGen.Models
 
 [<Fact>]
 let ``Init should return a valid initial state``() =

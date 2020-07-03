@@ -1,61 +1,94 @@
 ﻿namespace PocoGen
 
+open System
+open PocoGen
+open PocoGen.Components
+open PocoGen.Models
+open PocoGen.Messages
 open Fabulous
 open Fabulous.XamarinForms
 open Xamarin.Forms
 open Fabulous.XamarinForms.LiveUpdate
-open PocoGen.Page
 
 module App =
+    let defaultModel () =
+        { OutputLocation = DefaultOutputPath
+          ConnectionStrings = []
+          CurrentFormState = Idle
+          Databases = []
+          Languages = DefaultLanguages
+          Tables = []
+          SelectedConnectionString = None
+          SelectedDatabase = None
+          SelectedLanguage = CSharp
+          SelectedTables = []
+          CodeGenPageState = PageState.Init
+          ConnectionString = EmptyConnectionStringItem
+          Output = String.Empty }
 
-    type Msg =
-        | ConnectionPageMsg of ConnectionPage.Msg
-        | CodeGenPageMsg of CodeGenPage.Msg
-    //| NavigationPopped
 
-    type Model =
-        { ConnectionPageModel : ConnectionPage.Model
-          CodeGenPageModel : CodeGenPage.Model
-          WorkaroundNavPageBug : bool
-          WorkaroundNavPageBugPendingCmd : Cmd<Msg> }
+    let init () = defaultModel (), Cmd.none
 
-    type Pages =
-        { ConnectionPage : ViewElement
-          CodeGenPage : ViewElement }
+    let runConnectionTestAsyncCmd (model: Model): Cmd<Msg> =
+        async {
+            let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value
 
-    let getPages (allPages : Pages) =
-        let connPage = allPages.ConnectionPage
-        let codeGenPage = allPages.CodeGenPage
-        [ connPage; codeGenPage ]
+            let result =
+                match connectionTestResult.State with
+                | Pass ->
+                    { model with
+                          CurrentFormState = Valid
+                          Output =
+                              model.Output
+                              + Environment.NewLine
+                              + "Successfully Connected"
+                              + Environment.NewLine }
+                | Fail ex ->
+                    { model with
+                          CurrentFormState = InvalidConnectionString
+                          Output =
+                              model.Output
+                              + Environment.NewLine
+                              + connectionTestResult.Message
+                              + Environment.NewLine
+                              + ex.Message }
+                | _ ->
+                    { model with
+                          CurrentFormState = InvalidConnectionString
+                          Output = model.Output }
 
-    let initModels() =
-        { Model.CodeGenPageModel = Page.CodeGenPage.initModel()
-          Model.ConnectionPageModel = Page.ConnectionPage.init()
-          Model.WorkaroundNavPageBug = false
-          Model.WorkaroundNavPageBugPendingCmd = Cmd.none }
+            return TestConnectionComplete result
+        }
+        |> Cmd.ofAsyncMsg
 
-    let init() =
-        let model = initModels()
-        let cmd = Cmd.none
-        model, cmd
-
-    let update (msg : Msg) (model : Model) =
+    // todo: add update function
+    let update (msg: Msg) (m: Model): Model * Cmd<Msg> =
         match msg with
-        | ConnectionPageMsg msg ->
-            let m, cmd = ConnectionPage.update msg model.ConnectionPageModel
-            { model with ConnectionPageModel = m }, Cmd.map ConnectionPageMsg cmd
-        | CodeGenPageMsg msg ->
-            let m, cmd = CodeGenPage.update msg model.CodeGenPageModel
-            { model with CodeGenPageModel = m }, Cmd.map CodeGenPageMsg cmd
+        | SetSelectedDatabase db -> { m with SelectedDatabase = db }, Cmd.none
+        | SetSelectedLanguage l -> { m with SelectedLanguage = l }, Cmd.none
+        | SetSelectedConnection con ->
+            { m with
+                  SelectedConnectionString = Some(con) },
+            Cmd.none
+        | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
+        | _ -> m, Cmd.none
 
-    let view (model : Model) dispatch =
-        let connPage = ConnectionPage.view model.ConnectionPageModel (ConnectionPageMsg >> dispatch)
-        let codeGenPage = CodeGenPage.view model.CodeGenPageModel (CodeGenPageMsg >> dispatch)
-        View.TabbedPage(title = "Poco Gen", children = [ connPage; codeGenPage ])
+    let view (model: Model) dispatch =
+
+        let connectionSection =
+            Components.connectionTestView model dispatch
+
+        let codeGenSection = Components.codeGenView model dispatch
+
+        View.ContentPage
+            (padding = Thickness(5.0),
+             title = "Code Gen",
+             content = View.StackLayout(children = [ connectionSection; codeGenSection ]))
 
 
 type App() as app =
     inherit Application()
+
     do
         Device.SetFlags
             ([ "Shell_Experimental"
@@ -88,31 +121,5 @@ type App() as app =
 // Uncomment this code to save the application state to app.Properties using Newtonsoft.Json
 // See https://fsprojects.github.io/Fabulous/Fabulous.XamarinForms/models.html#saving-application-state for further  instructions.
 #if APPSAVE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

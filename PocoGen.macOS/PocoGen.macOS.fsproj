@@ -88,16 +88,16 @@
             <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous">
-            <HintPath>..\packages\Fabulous.0.54.1\lib\netstandard2.0\Fabulous.dll</HintPath>
+            <HintPath>..\packages\Fabulous.0.54.2\lib\netstandard2.0\Fabulous.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.LiveUpdate">
-            <HintPath>..\packages\Fabulous.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
+            <HintPath>..\packages\Fabulous.LiveUpdate.0.54.2\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.XamarinForms">
-            <HintPath>..\packages\Fabulous.XamarinForms.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
+            <HintPath>..\packages\Fabulous.XamarinForms.0.54.2\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.XamarinForms.LiveUpdate">
-            <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
+            <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.2\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
         </Reference>
         <Reference Include="Xamarin.Essentials">
             <HintPath>..\packages\Xamarin.Essentials.1.5.3.2\lib\netstandard2.0\Xamarin.Essentials.dll</HintPath>

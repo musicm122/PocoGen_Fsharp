@@ -5,7 +5,6 @@ open FsUnit.Xunit
 open PocoGen
 open PocoGen.App
 open Fabulous
-open PocoGen.Page
 
 [<Fact>]
 let ``Init should return a valid initial state``() =

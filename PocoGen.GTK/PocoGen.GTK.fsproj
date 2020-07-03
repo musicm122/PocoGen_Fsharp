@@ -130,16 +130,16 @@
             <HintPath>..\packages\FSharp.Data.Dapper.2.0.0\lib\netstandard2.0\FSharp.Data.Dapper.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous">
-            <HintPath>..\packages\Fabulous.0.54.1\lib\netstandard2.0\Fabulous.dll</HintPath>
+            <HintPath>..\packages\Fabulous.0.54.2\lib\netstandard2.0\Fabulous.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.XamarinForms">
-            <HintPath>..\packages\Fabulous.XamarinForms.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
+            <HintPath>..\packages\Fabulous.XamarinForms.0.54.2\lib\netstandard2.0\Fabulous.XamarinForms.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.LiveUpdate">
-            <HintPath>..\packages\Fabulous.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
+            <HintPath>..\packages\Fabulous.LiveUpdate.0.54.2\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
         </Reference>
         <Reference Include="Fabulous.XamarinForms.LiveUpdate">
-            <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.1\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
+            <HintPath>..\packages\Fabulous.XamarinForms.LiveUpdate.0.54.2\lib\netstandard2.0\Fabulous.XamarinForms.LiveUpdate.dll</HintPath>
         </Reference>
         <ProjectReference Include="..\PocoGen\PocoGen.fsproj">
             <Project>{350E4689-7D93-4ABA-A4B4-F285A823FF56}</Project>

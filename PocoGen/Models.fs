@@ -1,15 +1,19 @@
-﻿module PocoGen.DomainModels
-
+module PocoGen.Models
 open System
-
-type DomainMessages =
-    | MissingConnectionString
-    | InvalidConnectionString
 
 type LogMessage =
     | Debug of string
     | Info of string
     | Error of string
+
+type StringError =
+    | Missing
+    | MustNotBeLongerThan of int
+    | DoesntMatchPattern of string
+
+type DomainMessages =
+    | MissingConnectionString
+    | InvalidConnectionString
 
 type ConnectionName = string
 
@@ -104,3 +108,31 @@ let EmptyConnectionStringItem =
 type StoreConnectionStringResult =
     | Success
     | Error of string
+    
+type PageState =
+        | MissingRequiredFields of string
+        | ValidForm
+        | Init
+
+type FormState =
+    | Valid
+    | MissingConnStrValue
+    | Testing
+    | Idle
+    | InvalidConnectionString    
+    
+    
+type Model =
+        { OutputLocation: FileOutputPath
+          ConnectionStrings: ConnectionStringItem list
+          Databases: DbItem list
+          Languages: Language list
+          Tables: Table list
+          SelectedConnectionString: ConnectionStringItem option
+          SelectedDatabase: DbItem option
+          SelectedLanguage: Language
+          SelectedTables: Table list
+          CodeGenPageState: PageState
+          ConnectionString: ConnectionStringItem
+          CurrentFormState: FormState
+          Output: string }    

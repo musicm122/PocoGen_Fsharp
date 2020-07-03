@@ -2,9 +2,9 @@
 
 open Dapper
 open System.Data.SqlClient
-open PocoGen.DomainModels
+open PocoGen.Models
 open System
-open PocoGen.Common
+open Extensions
 
 let testConnection (connectionString: ConnectionStringValue): ConnectionTestResult =
     try
@@ -48,7 +48,7 @@ let testConnectionAsync (connectionString: ConnectionStringValue): Async<Connect
                      ConnectionTestResult.State = Fail ex }
     }
 
-let getTableNamesFromMSSqlServerQueryAsync (database: DbItem) (conString: ConnectionStringItem) =
+let getTableNamesFromMSSqlServerQueryAsync (database: DbItem) (conString: ConnectionStringItem): Async<Table list> =
     async {
         use connection = new SqlConnection(conString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask
@@ -65,7 +65,7 @@ let getTableNamesFromMSSqlServerQueryAsync (database: DbItem) (conString: Connec
                |> Seq.toList
     }
 
-let getTableNamesFromMSSqlServerQuery (database: DbItem) (conString: ConnectionStringItem) =
+let getTableNamesFromMSSqlServerQuery (database: DbItem) (conString: ConnectionStringItem): Table list =
     use connection = new SqlConnection(conString.Value)
     do connection.Open()
 
@@ -82,7 +82,7 @@ let getTableNamesFromMSSqlServerQuery (database: DbItem) (conString: ConnectionS
           Table.Database = database })
     |> Seq.toList
 
-let getDatabaseNames (connString: ConnectionStringItem) =
+let getDatabaseNames (connString: ConnectionStringItem) : DbItem list=
     use connection = new SqlConnection(connString.Value)
     do connection.Open()
     let sql = @"select name from sys.databases"
@@ -92,7 +92,7 @@ let getDatabaseNames (connString: ConnectionStringItem) =
     |> Seq.map (fun dVal -> { DbItem.Name = dVal })
     |> Seq.toList
 
-let getDatabaseNamesAsync (connString: ConnectionStringItem) =
+let getDatabaseNamesAsync (connString: ConnectionStringItem) : Async<DbItem list> =
     async {
         use connection = new SqlConnection(connString.Value)
         do! connection.OpenAsync() |> Async.AwaitTask
