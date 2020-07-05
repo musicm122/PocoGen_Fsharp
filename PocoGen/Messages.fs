@@ -10,7 +10,8 @@ open PocoGen.Models
         | SetSelectedLanguage of Language
         | SetSelectedConnection of ConnectionStringItem
         | BrowseForOutputFolder of FileOutputPath
-        | GenerateCode
-        | LoadConnectionData
-        | FetchConnectionData
-        | FetchConnectionDataComplete of Model
+        | GenerateCode        
+        | FetchTables
+        | FetchTablesComplete of Model
+        | FetchDatabases
+        | FetchDatabasesComplete of Model

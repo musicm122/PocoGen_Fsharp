@@ -1,10 +1,22 @@
 module PocoGen.Validation
 
 open System
+open System.Data.Common
 open System.IO
 open Extensions
 open PocoGen.Models
+open System.Data.SqlClient
 
+let HasAConnectionString (model: Model): bool =
+    model.ConnectionString.Value.IsNullOrWhiteSpace()
+    
+let IsConnectionStringInFormat(model: Model): bool =
+    try
+        SqlConnectionStringBuilder(model.ConnectionString.Value)|> ignore        
+        true
+    with
+    | :? Exception -> false 
+    
 let HasRequiredSaveFields (conStr: ConnectionStringItem): bool =
     conStr.Name.IsNullOrWhiteSpace()
     && conStr.Value.IsNullOrWhiteSpace()

@@ -28,7 +28,7 @@ type ConnectionStringItem =
 [<NoComparison>]
 type ConnectionTestState =
     | Pass
-    | Fail of Exception
+    | Fail of string 
     | NotStarted
 
 [<Struct>]
@@ -119,16 +119,15 @@ type FormState =
     | MissingConnStrValue
     | Testing
     | Idle
+    | FetchingData
     | InvalidConnectionString    
     
     
 type Model =
         { OutputLocation: FileOutputPath
-          ConnectionStrings: ConnectionStringItem list
           Databases: DbItem list
           Languages: Language list
           Tables: Table list
-          SelectedConnectionString: ConnectionStringItem option
           SelectedDatabase: DbItem option
           SelectedLanguage: Language
           SelectedTables: Table list

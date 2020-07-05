@@ -12,13 +12,11 @@ open Fabulous.XamarinForms.LiveUpdate
 
 module App =
     let defaultModel () =
-        { OutputLocation = DefaultOutputPath
-          ConnectionStrings = []
+        { OutputLocation = DefaultOutputPath          
           CurrentFormState = Idle
           Databases = []
           Languages = DefaultLanguages
-          Tables = []
-          SelectedConnectionString = None
+          Tables = []          
           SelectedDatabase = None
           SelectedLanguage = CSharp
           SelectedTables = []
@@ -26,51 +24,66 @@ module App =
           ConnectionString = EmptyConnectionStringItem
           Output = String.Empty }
 
-
     let init () = defaultModel (), Cmd.none
 
     let runConnectionTestAsyncCmd (model: Model): Cmd<Msg> =
         async {
-            let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value
-
+            let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value           
             let result =
                 match connectionTestResult.State with
                 | Pass ->
                     { model with
                           CurrentFormState = Valid
-                          Output =
-                              model.Output
-                              + Environment.NewLine
-                              + "Successfully Connected"
-                              + Environment.NewLine }
+                          Output = "Successfully Connected" }
                 | Fail ex ->
                     { model with
                           CurrentFormState = InvalidConnectionString
-                          Output =
-                              model.Output
-                              + Environment.NewLine
-                              + connectionTestResult.Message
-                              + Environment.NewLine
-                              + ex.Message }
+                          Output = connectionTestResult.Message + Environment.NewLine + ex }
                 | _ ->
                     { model with
                           CurrentFormState = InvalidConnectionString
                           Output = model.Output }
 
+            let! dialog =
+                Application.Current.MainPage.DisplayAlert("Connection Test Result", result.Output, "Ok")
+                |> Async.AwaitTask
             return TestConnectionComplete result
         }
         |> Cmd.ofAsyncMsg
 
-    // todo: add update function
+    let fetchDatabasesCmd (m:Model) : Cmd<Msg>=
+        async{            
+            let! dbs = DataAccess.getDatabaseNamesAsync m.ConnectionString
+            let outMessage = sprintf  "%i Databases found" dbs.Length
+            match dbs.Length with
+            | 0 -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", "No Databases found", "Ok") |> Async.AwaitTask
+            | _ -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", (sprintf  "%i Databases found" dbs.Length), "Ok") |> Async.AwaitTask
+            
+            return FetchDatabasesComplete {m with Databases = dbs}  
+        }
+        |> Cmd.ofAsyncMsg
     let update (msg: Msg) (m: Model): Model * Cmd<Msg> =
         match msg with
+        | UpdateConnectionStringValue conStringVal ->
+            { m with
+                  ConnectionString =
+                      { Id = m.ConnectionString.Id
+                        Name = m.ConnectionString.Name
+                        Value = conStringVal }
+                  CurrentFormState =
+                      match Validation.IsConnectionStringInFormat m with
+                      | false -> MissingConnStrValue
+                      | _ -> Valid }, Cmd.none
         | SetSelectedDatabase db -> { m with SelectedDatabase = db }, Cmd.none
         | SetSelectedLanguage l -> { m with SelectedLanguage = l }, Cmd.none
-        | SetSelectedConnection con ->
-            { m with
-                  SelectedConnectionString = Some(con) },
-            Cmd.none
         | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
+        | TestConnection -> { m with CurrentFormState = Testing }, runConnectionTestAsyncCmd m
+        | TestConnectionComplete testResult ->
+            { m with CurrentFormState = Idle }, Cmd.none
+        | FetchDatabases ->
+            { m with CurrentFormState = FetchingData }, fetchDatabasesCmd m
+        | FetchDatabasesComplete fetchDbResult ->
+            { m with CurrentFormState = Idle }, Cmd.none
         | _ -> m, Cmd.none
 
     let view (model: Model) dispatch =
@@ -81,8 +94,7 @@ module App =
         let codeGenSection = Components.codeGenView model dispatch
 
         View.ContentPage
-            (padding = Thickness(5.0),
-             title = "Code Gen",
+            (padding = Thickness(5.0), title = "Code Gen",
              content = View.StackLayout(children = [ connectionSection; codeGenSection ]))
 
 
