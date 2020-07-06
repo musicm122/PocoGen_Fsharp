@@ -55,9 +55,10 @@ module App =
         async{            
             let! dbs = DataAccess.getDatabaseNamesAsync m.ConnectionString
             let outMessage = sprintf  "%i Databases found" dbs.Length
-            match dbs.Length with
-            | 0 -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", "No Databases found", "Ok") |> Async.AwaitTask
-            | _ -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", (sprintf  "%i Databases found" dbs.Length), "Ok") |> Async.AwaitTask
+            let! output =
+                match dbs.Length with
+                | 0 -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", "No Databases found", "Ok") |> Async.AwaitTask
+                | _ -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", (sprintf  "%i Databases found" dbs.Length), "Ok") |> Async.AwaitTask
             
             return FetchDatabasesComplete {m with Databases = dbs}  
         }
@@ -83,7 +84,7 @@ module App =
         | FetchDatabases ->
             { m with CurrentFormState = FetchingData }, fetchDatabasesCmd m
         | FetchDatabasesComplete fetchDbResult ->
-            { m with CurrentFormState = Idle }, Cmd.none
+            { fetchDbResult with CurrentFormState = Idle }, Cmd.none
         | _ -> m, Cmd.none
 
     let view (model: Model) dispatch =
