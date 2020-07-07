@@ -132,6 +132,15 @@ module Components =
 
         let tables: ViewElement list = model.Tables |> toTableCell
 
+        let dbPicker =
+            View.Picker
+                (items = dbItems,
+                 title = "Databases",
+                 selectedIndexChanged = (fun (i, item) -> dispatch (SetSelectedDatabase item)))
+
+        let langPicker =
+            View.Picker(items = langs, title = "Languages")
+
         let innerLayout (children: ViewElement list): ViewElement =
             View.StackLayout
                 (orientation = StackOrientation.Vertical,
@@ -153,10 +162,10 @@ module Components =
         let body =
             innerLayout
                 ([ buttonStack
-                   formLabel "Databases"
-                   View.Picker(items = dbItems, title = "Databases")
-                   formLabel "Languages"
-                   View.Picker(items = langs, title = "Languages") ])
+                   formLabel "Databases";
+                   dbPicker;
+                   formLabel "Languages";
+                   langPicker ])
 
         let footer =
             innerLayout

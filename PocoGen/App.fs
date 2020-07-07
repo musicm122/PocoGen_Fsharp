@@ -12,11 +12,11 @@ open Fabulous.XamarinForms.LiveUpdate
 
 module App =
     let defaultModel () =
-        { OutputLocation = DefaultOutputPath          
+        { OutputLocation = DefaultOutputPath
           CurrentFormState = Idle
           Databases = []
           Languages = DefaultLanguages
-          Tables = []          
+          Tables = []
           SelectedDatabase = None
           SelectedLanguage = CSharp
           SelectedTables = []
@@ -28,7 +28,8 @@ module App =
 
     let runConnectionTestAsyncCmd (model: Model): Cmd<Msg> =
         async {
-            let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value           
+            let! connectionTestResult = DataAccess.testConnectionAsync model.ConnectionString.Value
+
             let result =
                 match connectionTestResult.State with
                 | Pass ->
@@ -38,7 +39,10 @@ module App =
                 | Fail ex ->
                     { model with
                           CurrentFormState = InvalidConnectionString
-                          Output = connectionTestResult.Message + Environment.NewLine + ex }
+                          Output =
+                              connectionTestResult.Message
+                              + Environment.NewLine
+                              + ex }
                 | _ ->
                     { model with
                           CurrentFormState = InvalidConnectionString
@@ -51,18 +55,47 @@ module App =
         }
         |> Cmd.ofAsyncMsg
 
-    let fetchDatabasesCmd (m:Model) : Cmd<Msg>=
-        async{            
+    let fetchDatabasesCmd (m: Model): Cmd<Msg> =
+        async {
             let! dbs = DataAccess.getDatabaseNamesAsync m.ConnectionString
-            let outMessage = sprintf  "%i Databases found" dbs.Length
+            let outMessage = sprintf "%i Databases found" dbs.Length
             let! output =
                 match dbs.Length with
-                | 0 -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", "No Databases found", "Ok") |> Async.AwaitTask
-                | _ -> Application.Current.MainPage.DisplayAlert("Fetching Databases ", (sprintf  "%i Databases found" dbs.Length), "Ok") |> Async.AwaitTask
-            
-            return FetchDatabasesComplete {m with Databases = dbs}  
+                | 0 ->
+                    Application.Current.MainPage.DisplayAlert("Fetching Databases ", "No Databases found", "Ok")
+                    |> Async.AwaitTask
+                | _ ->
+                    Application.Current.MainPage.DisplayAlert
+                        ("Fetching Databases ", (sprintf "%i Databases found" dbs.Length), "Ok")
+                    |> Async.AwaitTask
+
+            return FetchDatabasesComplete { m with Databases = dbs }
         }
         |> Cmd.ofAsyncMsg
+
+    let fetchTablesCmd (m: Model): Cmd<Msg> =
+        async {
+            let db =
+                match m.SelectedDatabase with
+                | Some db -> db
+                | _ -> raise (System.ArgumentException("Missing Database"))
+
+            let! tables = DataAccess.getTableNamesFromMSSqlServerQueryAsync db m.ConnectionString
+            let outMessage = sprintf "%i Tables found" tables.Length
+            let! output =
+                match tables.Length with
+                | 0 ->
+                    Application.Current.MainPage.DisplayAlert("Fetching Tables ", "No Tables found", "Ok")
+                    |> Async.AwaitTask
+                | _ ->
+                    Application.Current.MainPage.DisplayAlert
+                        ("Fetching Tables ", (sprintf "%i Tables found" tables.Length), "Ok")
+                    |> Async.AwaitTask
+
+            return SetSelectedDatabaseComplete { m with Tables = tables }
+        }
+        |> Cmd.ofAsyncMsg
+
     let update (msg: Msg) (m: Model): Model * Cmd<Msg> =
         match msg with
         | UpdateConnectionStringValue conStringVal ->
@@ -74,17 +107,26 @@ module App =
                   CurrentFormState =
                       match Validation.IsConnectionStringInFormat m with
                       | false -> MissingConnStrValue
-                      | _ -> Valid }, Cmd.none
-        | SetSelectedDatabase db -> { m with SelectedDatabase = db }, Cmd.none
+                      | _ -> Valid },
+            Cmd.none
+        | SetSelectedDatabase dbValue ->
+            let selectedDb =
+                m.Databases
+                |> List.find (fun db -> db.Name = db.Name)
+            { m with
+                  CurrentFormState = FetchingData
+                  SelectedDatabase = Some(selectedDb) },
+            fetchTablesCmd m
         | SetSelectedLanguage l -> { m with SelectedLanguage = l }, Cmd.none
         | BrowseForOutputFolder f -> { m with OutputLocation = f }, Cmd.none
         | TestConnection -> { m with CurrentFormState = Testing }, runConnectionTestAsyncCmd m
-        | TestConnectionComplete testResult ->
-            { m with CurrentFormState = Idle }, Cmd.none
-        | FetchDatabases ->
-            { m with CurrentFormState = FetchingData }, fetchDatabasesCmd m
+        | TestConnectionComplete testResult -> { m with CurrentFormState = Idle }, Cmd.none
+         | FetchDatabases ->
+            { m with CurrentFormState = FetchingData }, fetchDatabasesCmd m 
         | FetchDatabasesComplete fetchDbResult ->
-            { fetchDbResult with CurrentFormState = Idle }, Cmd.none
+            { fetchDbResult with
+                  CurrentFormState = Idle },
+            Cmd.none
         | _ -> m, Cmd.none
 
     let view (model: Model) dispatch =
@@ -95,7 +137,8 @@ module App =
         let codeGenSection = Components.codeGenView model dispatch
 
         View.ContentPage
-            (padding = Thickness(5.0), title = "Code Gen",
+            (padding = Thickness(5.0),
+             title = "Code Gen",
              content = View.StackLayout(children = [ connectionSection; codeGenSection ]))
 
 
